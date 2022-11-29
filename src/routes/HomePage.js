@@ -1,7 +1,9 @@
 export const HomePage = () => {
-    <>
+   return ( 
+   <>
         <h1>
-            I am the homepage
+            Home Page rendered
         </h1>
     </>
+    )
 }
