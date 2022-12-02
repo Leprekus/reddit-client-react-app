@@ -2,35 +2,20 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './app/store';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Root } from './routes/Root';
-import ErrorPage from './ErrorPage';
-import { HomePage } from './routes/HomePage';
-
+import { RouterProvider } from 'react-router-dom';
+import { TestRequests } from './mocks/TestRequests';
+import { router } from './router'
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root/>,
-    errorElement: <ErrorPage/>,
-    children: [
-      {
-        path: 'homePage',
-        element: <HomePage/>
-      }
-    ]
 
-  }
-])
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
+      <TestRequests/>
     </Provider>
   </React.StrictMode>
 );
