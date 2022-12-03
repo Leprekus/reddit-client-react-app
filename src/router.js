@@ -5,6 +5,7 @@ import { HomePage } from './routes/HomePage';
 import { ProtectedLayout } from './components/ProtectedLayout';
 import { LoginPage } from './features/login/LoginPage';
 import { AuthProvider } from './hooks/useAuth';
+import { HomeLayout } from './components/HomeLayout';
 export const router = createBrowserRouter([
     {
       path: '/',
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
       path: '/login',
       element: 
       <AuthProvider>
-        <LoginPage/>
+        <HomeLayout/>
       </AuthProvider>
     }
   ])

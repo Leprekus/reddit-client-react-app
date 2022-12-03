@@ -1,21 +1,20 @@
-import { Link, Navigate, useOutlet } from "react-router-dom";
+import { Navigate, useOutlet } from "react-router-dom";
+import { LoginPage } from "../features/login/LoginPage";
 import { useAuth } from "../hooks/useAuth";
-import { Root } from "../routes/Root";
-
 //Receives context from AuthProvider 
 //in order to render login or homePage depending if a user exists
-export const ProtectedLayout = () => {
+export const HomeLayout = () => {
   const { user } = useAuth();
   const outlet = useOutlet();
 
-  if (!user) {
-    return <Navigate to="/login" />;
+  if (user) {
+    return <Navigate to="/homepage" replace />;
   }
 
   return (
     <div>
-      <Root/>
-      { outlet }
+      <LoginPage/>
+      {outlet}
     </div>
-  )
+  );
 };

@@ -1,16 +1,19 @@
 import { Button } from "@mui/material"
-import { Navigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth"
+import { useLocalStorage } from "../../hooks/useLocalStorage"
+import randomstring from "randomstring"
 
 export const LoginPage = () => {
     const { login, user } = useAuth()
-    if(user) return <Navigate to='/homePage'/>
+    const [randString, setRandString] = useLocalStorage('RANDOM_STRING', randomstring.generate())
     const handleLogin = () => {
-        login({ name: 'leprekus' })
+        const authEndpoint = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REACT_APP_REDDIT_ID}&response_type=code&state=${randString}&redirect_uri=${process.env.REACT_APP_URI}&duration=permanent&scope=${process.env.REACT_APP_SCOPE_STRING}`
+        window.location.href = authEndpoint
+        login({ authenticated: true })
     }
-    return (
+    return ( 
         <div>
-            <Button onClick={handleLogin} variant="contained">Set User</Button>
+            <Button onClick={handleLogin} variant="contained">Login</Button>
         </div>
     )
 }

@@ -3,13 +3,17 @@ import { getByText, render, screen, prettyDOM, fireEvent, debug, waitFor, userEv
 import { Provider } from 'react-redux';
 import { store } from '../../app/store';
 import { MemoryRouter, Routes, Route, Router } from 'react-router-dom';
-import { AuthProvider } from '../../hooks/useAuth'
+import { AuthProvider } from '../../hooks/useAuth';
+import { LoginPage } from '../../features/login/LoginPage'
 describe('Root Component', () => {
     it('should render LoginPage component if user is not authenticated', () => {
         render(      
-        <AuthProvider>
-            <LoginPage/>
-        </AuthProvider>
+        <MemoryRouter>
+            <AuthProvider>
+                <LoginPage/>
+            </AuthProvider>
+        </MemoryRouter>
     )
+    expect(screen.getByText(/login/i)).toBeInTheDocument();
     })
 })
