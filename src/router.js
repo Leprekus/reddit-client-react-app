@@ -2,16 +2,16 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Root } from './routes/Root';
 import ErrorPage from './ErrorPage';
 import { HomePage } from './routes/HomePage';
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { ProtectedLayout } from './components/ProtectedLayout';
 import { LoginPage } from './features/login/LoginPage';
-
+import { AuthProvider } from './hooks/useAuth';
 export const router = createBrowserRouter([
     {
       path: '/',
       element: 
-      <ProtectedRoute>
-        <Root/>
-      </ProtectedRoute>,
+      <AuthProvider>
+        <ProtectedLayout/>
+      </AuthProvider>,
       errorElement: <ErrorPage/>,
       children: [
         {
@@ -23,6 +23,9 @@ export const router = createBrowserRouter([
     },
     {
       path: '/login',
-      element: <LoginPage/>
+      element: 
+      <AuthProvider>
+        <LoginPage/>
+      </AuthProvider>
     }
   ])
