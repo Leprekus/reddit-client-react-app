@@ -5,8 +5,8 @@ import { store } from './app/store';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { RouterProvider } from 'react-router-dom';
-import { TestRequests } from './mocks/TestRequests';
 import { router } from './router'
+import { TestRequests } from './mocks/TestRequests';
 const container = document.getElementById('root');
 const root = createRoot(container);
 

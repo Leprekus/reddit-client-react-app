@@ -1,5 +1,6 @@
 import { Cookie } from '@mui/icons-material'
 import { Button } from '@mui/material'
+import { response } from 'msw'
 import randomstring from 'randomstring'
 import { useState, useEffect } from 'react'
 export const TestRequests = ({ isDisplayed, searchTerm }) => {
@@ -16,7 +17,7 @@ export const TestRequests = ({ isDisplayed, searchTerm }) => {
     
     const authEndpoint = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&state=${RANDOM_STRING}&redirect_uri=${URI}&duration=${DURATION}&scope=${SCOPE_STRING}`
     const [token, setToken] = useState(null)
-    const [test, setTest] = useState(null)
+    const [testEndpointResponse, setTestEndpointResponse] = useState('')
     const urlHasCode = (new URL(window.location.href)).searchParams.get('code')
     useEffect( () => {
         // authentication process: 
@@ -80,6 +81,13 @@ export const TestRequests = ({ isDisplayed, searchTerm }) => {
             }
         };
     }
+    const handleTestEndpoint = async () => {
+        const response = await fetch('https://httpbin.org/get')
+        const data = await response.json()
+        console.log(data)
+        const origin = data.headers.Origin
+        setTestEndpointResponse(origin)
+    }
     return (
         <div className="dropdown-content" style={{display: isDisplayed}}>
             <p></p>
@@ -89,7 +97,8 @@ export const TestRequests = ({ isDisplayed, searchTerm }) => {
             <Button variant='outlined' onClick={handleRequest}>Make Request</Button>
             </>
             ): <Button variant='contained' size='large' onClick={handleLogin}>Login</Button>}
-       
+            <p>{testEndpointResponse}</p>
+            <Button onClick={handleTestEndpoint}>Test Endpoint</Button>
         </div>
     )
 }

@@ -21,7 +21,43 @@ export const handlers = [
         )
     }),
 
-    rest.post('Token Retrieval', null),
+    rest.post('https://www.reddit.com/api/v1/access_token', (req, res, ctx) => {
+		return res(
+			ctx.json({
+				"access_token": "62260682-ju-NcMlWcmi_oXmYUr7bg9magypnEQ",
+				"token_type": "bearer",
+				"expires_in": 86400,
+				"refresh_token": "62260682-fZOzHF414_ht8QL6paKK9hr5b5F1Eg",
+				"scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
+			})
+		)
+	}),
+
+	rest.get('https://httpbin.org/get', (req, res, ctx) => {
+		return res(
+			ctx.json({
+				"args": {},
+				"headers": {
+					"Accept": "*/*",
+					"Accept-Encoding": "gzip, deflate, br",
+					"Accept-Language": "en-US,en;q=0.9,es;q=0.8",
+					"Host": "httpbin.org",
+					"Origin": "http://localhost:3000",
+					"Referer": "http://localhost:3000/",
+					"Sec-Ch-Ua": "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\"",
+					"Sec-Ch-Ua-Mobile": "?0",
+					"Sec-Ch-Ua-Platform": "\"Windows\"",
+					"Sec-Fetch-Dest": "empty",
+					"Sec-Fetch-Mode": "cors",
+					"Sec-Fetch-Site": "cross-site",
+					"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+					"X-Amzn-Trace-Id": "Root=1-638b7154-57dfc4cc70d52b707600d4cf"
+				},
+				"origin": "50.98.90.149",
+				"url": "https://httpbin.org/get"
+			})
+		)
+	}),
 
     rest.post('Refresh Token', null),
 
