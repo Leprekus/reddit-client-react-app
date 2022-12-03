@@ -12,7 +12,7 @@ export const TestRequests = ({ isDisplayed, searchTerm }) => {
     RESPONSE_TYPE = 'code', //code for implicit grant
     RANDOM_STRING = randomstring.generate(),
     URI = 'http://localhost:3000/',
-    DURATION = 'temporary',
+    DURATION = 'permament',
     SCOPE_STRING = 'identity, edit, flair, history, modconfig, modflair, modlog, modposts, modwiki, mysubreddits, privatemessages, read, report, save, submit, subscribe, vote, wikiedit, wikiread'
     
     const authEndpoint = `https://www.reddit.com/api/v1/authorize?client_id=${CLIENT_ID}&response_type=${RESPONSE_TYPE}&state=${RANDOM_STRING}&redirect_uri=${URI}&duration=${DURATION}&scope=${SCOPE_STRING}`
