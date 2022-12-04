@@ -7,6 +7,10 @@ import { AuthProvider } from '../../hooks/useAuth';
 import { LoginPage } from '../../features/login/LoginPage'
 import { HomeLayout } from '../../components/HomeLayout';
 describe('Root Component', () => {
+    afterEach(() => {
+        localStorage.clear()
+    })
+
     it('should render LoginPage component if user is not authenticated', () => {
         render(      
         <MemoryRouter>
@@ -17,7 +21,7 @@ describe('Root Component', () => {
     )
     expect(screen.getByText(/login/i)).toBeInTheDocument();
     })
-    it('should change location href', () => {
+    it('should open reddit auth window when login is clicked', () => {
         Object.defineProperty(window, 'location', {
             value: {
               href: 'http://localhost:3000/login',
@@ -31,6 +35,29 @@ describe('Root Component', () => {
         </MemoryRouter>
     )
     fireEvent.click(screen.getByText(/login/i))
-    expect(window.location.href).toBe('som');
+    //JSON.parse() imitates the useLocalStorage hook's behavior when retrieving an item
+    expect(window.location.href).toBe(`https://www.reddit.com/api/v1/authorize?client_id=${process.env.REACT_APP_REDDIT_ID}&response_type=code&state=${JSON.parse(localStorage.getItem('RANDOM_STRING'))}&redirect_uri=${process.env.REACT_APP_URI}&duration=permanent&scope=${process.env.REACT_APP_SCOPE_STRING}`);
+    })
+    it('should fetch token if url state matches with RANDOM_STRING and url has a code', () => {
+        Object.defineProperty(window, 'location', {
+            value: {
+              href: 'http://localhost:3000/login?state=IH18NhEADrRHrZmrmNZHddlNTx51gXQj&code=wFtt02vy7XDMwsfl5mrzl49AJhviiw#_',
+            }
+          });
+        localStorage.setItem('RANDOM_STRING', 'IH18NhEADrRHrZmrmNZHddlNTx51gXQj')
+        render(      
+        <MemoryRouter>
+            <AuthProvider>
+                <LoginPage/>
+            </AuthProvider>
+        </MemoryRouter>
+    )
+    expect(localStorage.getItem	('ACCESS_TOKEN')).toBe({
+        "access_token": 'Your access token',
+        "token_type": "bearer",
+        "expires_in": 'Unix Epoch Seconds',
+        "scope": 'A scope string',
+        "refresh_token": 'Your refresh token'
+        })
     })
 })

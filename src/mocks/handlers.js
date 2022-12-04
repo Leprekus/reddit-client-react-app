@@ -21,7 +21,7 @@ export const handlers = [
         )
     }),
 
-    rest.post('https://www.reddit.com/api/v1/access_token', (req, res, ctx) => {
+    rest.post('http://localhost:3000/login?state=IH18NhEADrRHrZmrmNZHddlNTx51gXQj&code=wFtt02vy7XDMwsfl5mrzl49AJhviiw#_', (req, res, ctx) => {
 		return res(
 			ctx.json({
 				"access_token": "62260682-ju-NcMlWcmi_oXmYUr7bg9magypnEQ",
