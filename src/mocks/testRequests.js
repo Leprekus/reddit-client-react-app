@@ -11,7 +11,7 @@ export const TestRequests = ({ isDisplayed, searchTerm }) => {
     CLIENT_SECRET = process.env.REACT_APP_REDDIT_SECRET,
     RESPONSE_TYPE = 'code', //code for implicit grant
     RANDOM_STRING = randomstring.generate(),
-    URI = 'http://localhost:3000/',
+    URI = process.env.REACT_APP_URI,
     DURATION = 'permament',
     SCOPE_STRING = 'identity, edit, flair, history, modconfig, modflair, modlog, modposts, modwiki, mysubreddits, privatemessages, read, report, save, submit, subscribe, vote, wikiedit, wikiread'
     
