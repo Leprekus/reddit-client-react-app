@@ -5,10 +5,10 @@ import { Root } from "../routes/Root";
 //Receives context from AuthProvider 
 //in order to render login or homePage depending if a user exists
 export const ProtectedLayout = () => {
-  const { user } = useAuth();
+  const { token } = useAuth();
   const outlet = useOutlet();
 
-  if (!user) {
+  if (!token) {
     return <Navigate to="/login" />;
   }
 

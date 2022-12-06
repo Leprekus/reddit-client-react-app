@@ -21,14 +21,16 @@ export const handlers = [
         )
     }),
 
-    rest.post('http://localhost:3000/login?state=IH18NhEADrRHrZmrmNZHddlNTx51gXQj&code=wFtt02vy7XDMwsfl5mrzl49AJhviiw#_', (req, res, ctx) => {
+    rest.post('https://www.reddit.com/api/v1/access_token', (req, res, ctx) => {
 		return res(
 			ctx.json({
-				"access_token": "62260682-ju-NcMlWcmi_oXmYUr7bg9magypnEQ",
-				"token_type": "bearer",
-				"expires_in": 86400,
-				"refresh_token": "62260682-fZOzHF414_ht8QL6paKK9hr5b5F1Eg",
-				"scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
+				"responseText": {
+					"access_token": "62260682-ju-NcMlWcmi_oXmYUr7bg9magypnEQ",
+					"token_type": "bearer",
+					"expires_in": 86400,
+					"refresh_token": "62260682-fZOzHF414_ht8QL6paKK9hr5b5F1Eg",
+					"scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
+				}
 			})
 		)
 	}),

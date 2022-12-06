@@ -11,8 +11,8 @@ export const useFetchToken = () => {
      &&
     code ? true : false
     useMemo(() => {
-      if(urlContainsCode) {
-        var authorizationBasic = window.btoa(process.env.REACT_APP_REDDIT_ID + ':' + process.env.REACT_APP_REDDIT_SECRET);
+      if(accessTokenObject === null && urlContainsCode) {
+         var authorizationBasic = window.btoa(process.env.REACT_APP_REDDIT_ID + ':' + process.env.REACT_APP_REDDIT_SECRET);
         var request = new XMLHttpRequest();
         request.open('POST', 'https://www.reddit.com/api/v1/access_token', true);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -23,9 +23,9 @@ export const useFetchToken = () => {
             if (request.readyState === 4) {
                 const response = JSON.parse(request.responseText)
                 return response.access_token ? setAccessTokenObject(response) : ''
-            }
-        };
+                }
+            };
     }
     }, [urlContainsCode])
-
+    return accessTokenObject
 }
