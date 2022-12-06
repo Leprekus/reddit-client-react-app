@@ -1,7 +1,7 @@
 import { Button } from "@mui/material"
-import { useAuth } from "../../hooks/useAuth"
+import { useAuth } from "../hooks/useAuth"
 import randomstring from "randomstring"
-import { useFetchToken } from "../../hooks/useFetchToken"
+import { useFetchToken } from "../hooks/useFetchToken"
 import { useEffect } from "react"
 
 export const LoginPage = () => {

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from '../../app/store';
 import { MemoryRouter, Routes, Route, Router } from 'react-router-dom';
 import { AuthProvider } from '../../hooks/useAuth';
-import { LoginPage } from '../../features/login/LoginPage'
+import { LoginPage } from '../../routes/LoginPage'
 import { HomeLayout } from '../../components/HomeLayout';
 import { ProtectedLayout } from '../../components/ProtectedLayout';
 describe('LoginPage Component', () => {

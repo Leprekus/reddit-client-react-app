@@ -1,5 +1,5 @@
 import { Navigate, useOutlet } from "react-router-dom";
-import { LoginPage } from "../features/login/LoginPage";
+import { LoginPage } from "../routes/LoginPage";
 import { useAuth } from "../hooks/useAuth";
 //Receives context from AuthProvider 
 //in order to render login or homePage depending if a user exists
