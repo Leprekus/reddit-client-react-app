@@ -7,15 +7,13 @@ import { AuthProvider } from '../../hooks/useAuth';
 import { LoginPage } from '../../features/login/LoginPage'
 import { HomeLayout } from '../../components/HomeLayout';
 import { ProtectedLayout } from '../../components/ProtectedLayout';
-describe('Root Component', () => {
+describe('LoginPage Component', () => {
     beforeEach(() => {
         Object.defineProperty(window, 'location', {
             value: {
               href: 'http://localhost:3000/login',
             }
           });
-          jest.spyOn(window.localStorage.__proto__, 'setItem');
-          jest.spyOn(window.localStorage.__proto__, 'getItem');
         
     })
 
@@ -24,55 +22,34 @@ describe('Root Component', () => {
 
     })
 
-    it('should render LoginPage component if user is not authenticated', () => {
+    it('should render loginPage component is there is no token', async () => {
         render(      
-        <MemoryRouter>
+                <MemoryRouter initialEntries={['/homepage']}>
+                    <Routes>
+                        <Route path ='/homepage' element={<AuthProvider><ProtectedLayout/></AuthProvider>}/>
+                        <Route path ='/login' element={<AuthProvider><HomeLayout/></AuthProvider>}/>
+                        {/* <Route path ='/homepage' element={<HomePage/>}/> */}
+                    </Routes>
+                </MemoryRouter>
+            
+        )
+        expect(screen.getByText(/login/i)).toBeInTheDocument();
+    })
+
+    it('should open reddit auth window when login is clicked', async () => {
+        localStorage.setItem('RANDOM_STRING', JSON.stringify('sqNCwBmryP47dGEsKB7KGLvFFDtRwfal'))
+        render(      
+            <MemoryRouter>
             <AuthProvider>
                 <HomeLayout/>
             </AuthProvider>
         </MemoryRouter>
-    )
-        expect(screen.getByText(/login/i)).toBeInTheDocument();
-    })
-
-    
-    
-    it('should redirect to Home Page after authentication', async () => {
-        localStorage.setItem('token', JSON.stringify({
-            "access_token": "62260682-8MIBXe7vqBtK6sjRCKsbeHS5sRIyaA",
-            "token_type": "bearer",
-            "expires_in": 86400,
-            "refresh_token": "62260682-SFEomouZO7HMfko7QHA8mf72fMYBNQ",
-            "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
-        }))
-        window.location.href = 'http://localhost:3000/homePage'
-        render(      
-            <MemoryRouter>
-                <AuthProvider>
-                    <ProtectedLayout/>
-                </AuthProvider>
-            </MemoryRouter>
         )
-        console.log(window.location.href)
-   
-        expect(screen.getByText(/home page/i)).toBeInTheDocument();
-        console.log(prettyDOM)
-})
-
-    // it('should open reddit auth window when login is clicked', async () => {
-    //     render(      
-    //     <MemoryRouter>
-    //         <AuthProvider>
-    //             <LoginPage/>
-    //         </AuthProvider>
-    //     </MemoryRouter>
-    //     )
-    //     fireEvent.click(screen.getByText(/login/i))
-    //     JSON.parse() imitates the useLocalStorage hook's behavior when retrieving an item
-    //     await waitFor(() => {
-    //         expect(window.location.href).toBe(`https://www.reddit.com/api/v1/authorize?client_id=${process.env.REACT_APP_REDDIT_ID}&response_type=code&state=${JSON.parse(localStorage.getItem('RANDOM_STRING'))}&redirect_uri=${process.env.REACT_APP_URI}&duration=permanent&scope=${process.env.REACT_APP_SCOPE_STRING}`);
-    //     console.log(window.location.href)
-    //     })
-    // })
+        fireEvent.click(screen.getByText(/login/i))
+        // JSON.parse() imitates the useLocalStorage hook's behavior when retrieving an item
+        await waitFor(() => {
+            expect(window.location.href).toBe('https://www.reddit.com/api/v1/authorize?client_id=qjuHHDbFqllu2b76JMYmGQ&response_type=code&state=sqNCwBmryP47dGEsKB7KGLvFFDtRwfal&redirect_uri=http://localhost:3000/login&duration=permanent&scope=identity, edit, flair, history, modconfig, modflair, modlog, modposts, modwiki, mysubreddits, privatemessages, read, report, save, submit, subscribe, vote, wikiedit, wikiread');
+        })
+    })
 
 })

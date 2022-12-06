@@ -8,11 +8,11 @@ export const Root = () => {
     <main>
         <h1>I am the root</h1>
         <nav >
-            <Button  component={Link} variant='outline' data-testid='home-page-button' to='homePage'>Home Page</Button>
-            <Button  component={Link} variant='outline' to='homePage'>Search</Button>
-            <Button  component={Link} variant='outline' to='homePage'>Trending</Button>
-            <Button  component={Link} variant='outline' to='homePage'>Notifications</Button>
-            <Button  component={Link} variant='outline' to='homePage'>Profile</Button>
+            <Button  component={Link} variant='outline' data-testid='home-page-button' to='homepage'>Home Page</Button>
+            <Button  component={Link} variant='outline' to='homepage'>Search</Button>
+            <Button  component={Link} variant='outline' to='homepage'>Trending</Button>
+            <Button  component={Link} variant='outline' to='homepage'>Notifications</Button>
+            <Button  component={Link} variant='outline' to='homepage'>Profile</Button>
         </nav>
     </main>
    ) 

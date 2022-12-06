@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   // call this function when you want to authenticate the user
   const login = async (data) => {
     _setToken(data);
-    navigate("/homePage");
+    navigate("/homepage");
   };
 
   // call this function to sign out logged in user
