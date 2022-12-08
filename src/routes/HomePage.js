@@ -1,4 +1,4 @@
-import { Post } from "../features/Post"
+import { RedditPostsList } from "../components/RedditPostsList"
 
 export const HomePage = () => {
    return ( 
@@ -6,7 +6,7 @@ export const HomePage = () => {
         <h1>
             Home Page rendered
         </h1>
-        <Post/>
+        <RedditPostsList/>
     </>
     )
 }
