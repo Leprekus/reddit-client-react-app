@@ -22,7 +22,7 @@ export default async function fetchNewPosts (token) {
     const params = new URLSearchParams({
         q: 'Nuclear Revenge'
     })
-    const  res = await fetch(`https://oauth.reddit.com/subreddits/search/new`, {
+    const  res = await fetch(`https://oauth.reddit.com/.json?sort=new`, {
         method: 'GET',
         headers: {
             Authorization: `bearer ${token}` ,

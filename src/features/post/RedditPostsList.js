@@ -1,21 +1,31 @@
 import { useEffect, useMemo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../../components/Post";
-import { fetchPosts } from "./postSlice";
+import { fetchPosts, selectPostsLists, selectPostsListStatus } from "./postSlice";
 export const RedditPostsList = () => {
     const dispatch = useDispatch()
-    const postsList = dispatch(fetchPosts());
+    const postsListStatus = useSelector(selectPostsListStatus)
+    const postsLists = useSelector(selectPostsLists)
+    
     useMemo(() => {
-        
-    }, [postsList])
+        dispatch(fetchPosts())
+    }, [])
+    console.log(postsListStatus)
     return (
         <>
         {
-            postsList.length > 0 ? postsList.map(data => {
-                return <Post data={data}/>
-            }) :
-            <p>Couldn't fetch posts</p>
+            postsListStatus === 'loading' &&
+            <p>Loading...</p>
+        } 
+        {
+            postsListStatus === 'fulfilled' && 
+            postsLists.map(data => <Post data={data}/>)
         }
+        {
+            postsListStatus === 'rejected' && 
+            <p>Error</p>
+        }
+
         </>
     )
 }
