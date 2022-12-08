@@ -4,7 +4,7 @@ import { response } from 'msw'
 import randomstring from 'randomstring'
 import { useState, useEffect } from 'react'
 export const TestRequests = ({ isDisplayed, searchTerm }) => {
-    console.log(searchTerm)
+    //console.log(searchTerm)
     
     let 
     CLIENT_ID = process.env.REACT_APP_REDDIT_ID,
