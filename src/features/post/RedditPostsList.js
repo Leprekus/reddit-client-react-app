@@ -1,7 +1,11 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Post } from "../../components/Post";
+import { fetchPosts } from "./postSlice";
 export const RedditPostsList = () => {
-    
-    const postsList = [];
+    const dispatch = useDispatch()
+    const postsList = dispatch(fetchPosts());
+    console.log(postsList)
     return (
         <>
         {

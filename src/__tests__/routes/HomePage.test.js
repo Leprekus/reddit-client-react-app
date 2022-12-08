@@ -6,6 +6,8 @@ import { debug } from '@testing-library/jest-dom'
 import { ProtectedLayout } from '../../components/ProtectedLayout';
 import { HomePage } from '../../routes/HomePage';
 import { Root } from '../../routes/Root';
+import { Provider } from 'react-redux';
+import { store } from '../../app/store'
 describe('HomePage Component', () => {
 
     it('should render homePage', async () => {
@@ -17,12 +19,14 @@ describe('HomePage Component', () => {
         //     "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
         // }))
         render(      
-                <MemoryRouter initialEntries={['/homepage']}>
-                    <Routes>
-                        <Route path ='/' element={<Root/>}/>
-                        <Route path ='/homepage' element={<HomePage/>}/>
-                    </Routes>
-                </MemoryRouter>
+                <Provider store={store}>
+                    <MemoryRouter initialEntries={['/homepage']}>
+                        <Routes>
+                            <Route path ='/' element={<Root/>}/>
+                            <Route path ='/homepage' element={<HomePage/>}/>
+                        </Routes>
+                    </MemoryRouter>
+                </Provider>
                 , 
         )
         expect(screen.getByText(/home page rendered/i)).toBeInTheDocument();

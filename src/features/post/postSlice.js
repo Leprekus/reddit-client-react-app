@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchNewPosts from "../../API/fetchNewPosts";
-import useAuth from '../../hooks/useAuth'
+import { useAuth } from '../../hooks/useAuth'
 const initialState = {}
 
-export const incrementAsync = createAsyncThunk(
-    'counter/fetchCount',
+export const fetchPosts = createAsyncThunk(
+    'posts/fetchNewPosts',
     async (amount) => {
         const { token } = useAuth()
       const response = await fetchNewPosts(token);
@@ -14,19 +14,19 @@ export const incrementAsync = createAsyncThunk(
   );
   
 export const counterSlice = createSlice({
-    name: 'post',
+    name: 'posts',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
       builder
-        .addCase(incrementAsync.pending, (state) => {
+        .addCase(fetchPosts.pending, (state) => {
           state.status = 'loading';
         })
-        .addCase(incrementAsync.fulfilled, (state, action) => {
+        .addCase(fetchPosts.fulfilled, (state, action) => {
           state.status = 'idle';
           state.value += action.payload;
         })
-        .addCase(incrementAsync.rejected, (state, action) => {
+        .addCase(fetchPosts.rejected, (state, action) => {
           state.status = 'idle';
           state.value += action.payload;
         })
