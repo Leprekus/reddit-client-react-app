@@ -1,11 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { Post } from "../../components/Post";
 import { fetchPosts } from "./postSlice";
 export const RedditPostsList = () => {
     const dispatch = useDispatch()
     const postsList = dispatch(fetchPosts());
-    console.log(postsList)
+    useMemo(() => {
+        
+    }, [postsList])
     return (
         <>
         {

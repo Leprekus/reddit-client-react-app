@@ -7,9 +7,15 @@ export const fetchPosts = createAsyncThunk(
     'posts/fetchNewPosts',
     async (amount) => {
         const { token } = useAuth()
-      const response = await fetchNewPosts(token);
-      // The value we return becomes the `fulfilled` action payload
-      return response.data;
+        try {
+          const response = await fetchNewPosts(token.access_token);
+          // The value we return becomes the `fulfilled` action payload
+          console.log(response.data)
+          return response.data;
+
+        } catch ( e ) {
+          console.log(e)
+        }
     }
   );
   
