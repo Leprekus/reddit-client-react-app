@@ -8,7 +8,7 @@ export const ProtectedLayout = () => {
   const { token } = useAuth();
   const outlet = useOutlet();
 
-  if (!token) {
+  if (!token || !token.isNotExpired) {
     return <Navigate to="/login" />;
   }
 
