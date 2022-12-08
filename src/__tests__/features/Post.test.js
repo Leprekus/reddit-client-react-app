@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import { Post } from "../../features/Post"
+import { Post } from "../../components/Post"
 
 describe('Reddit Post', () => {
     it('should render post', () => {

@@ -1,4 +1,4 @@
-import { Post } from "../features/Post";
+import { Post } from "../../components/Post";
 export const RedditPostsList = () => {
     
     const postsList = [];

@@ -1,4 +1,4 @@
-import { RedditPostsList } from "../components/RedditPostsList"
+import { RedditPostsList } from "../features/post/RedditPostsList"
 
 export const HomePage = () => {
    return ( 
