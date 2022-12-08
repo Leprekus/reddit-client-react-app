@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import setTokenExpiration from "../utils/setTokenExpiration";
 import { useAuth } from "./useAuth";
 export const useFetchToken = () => {    
     const { randString } = useAuth()
@@ -23,7 +24,14 @@ export const useFetchToken = () => {
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
                 const response = JSON.parse(request.responseText)
-                return response.access_token ? login(response) : ''
+                const date = new Date();
+                const expirationDate = date.setMinutes(date.getMinutes() + 86000);
+                const access_token_object = {
+                    ...response,
+                    isNotExpired: Date.now() < expirationDate,
+                }
+                console.log(access_token_object)
+                return access_token_object ? login(access_token_object) : ''
                 }
             };
     }
