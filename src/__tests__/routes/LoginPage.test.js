@@ -22,7 +22,7 @@ describe('LoginPage Component', () => {
 
     })
 
-    it('should render loginPage component is there is no token', async () => {
+    it('should render loginPage component if there is no token', async () => {
         render(      
                 <MemoryRouter initialEntries={['/homepage']}>
                     <Routes>
