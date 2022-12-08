@@ -7,8 +7,7 @@ export const HomeLayout = () => {
   const { token } = useAuth();
   const outlet = useOutlet();
 
-  if (token && token.isNotExpired) {
-    console.log(token.expires_in)
+  if (token && !token.isExpired) {
     return <Navigate to="/homepage" replace />;
   }
 

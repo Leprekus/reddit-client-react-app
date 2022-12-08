@@ -41,7 +41,8 @@ describe('LoginPage Component', () => {
             "token_type": "bearer",
             "expires_in": 86400,
             "refresh_token": "62260682-SFEomouZO7HMfko7QHA8mf72fMYBNQ",
-            "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
+            "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history",
+            "isExpired": true
         }))
         render(      
                 <MemoryRouter initialEntries={['/homepage']}>
@@ -54,7 +55,7 @@ describe('LoginPage Component', () => {
             
         )
         //not rendering HomePage component because it is a shallow render
-        expect(screen.getByText(/home page/i)).toBeInTheDocument();
+        expect(screen.getByText(/login/i)).toBeInTheDocument();
     })
 
     it('should open reddit auth window when login is clicked', async () => {
