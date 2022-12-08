@@ -19,7 +19,10 @@ export const RedditPostsList = () => {
         } 
         {
             postsListStatus === 'fulfilled' && 
-            postsLists.map(data => <Post data={data}/>)
+            postsLists.map(data => 
+            <Post 
+            key={data.id}
+            data={data}/>)
         }
         {
             postsListStatus === 'rejected' && 
