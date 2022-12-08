@@ -14,7 +14,7 @@ export const fetchPosts = createAsyncThunk(
           const response = await fetchNewPosts(token.access_token);
           // The value we return becomes the `fulfilled` action payload
           const postsList = response.data.children.map(post => post.data)
-          console.log(postsList[0])
+          console.log(postsList)
           return postsList;
 
         } catch ( e ) {
