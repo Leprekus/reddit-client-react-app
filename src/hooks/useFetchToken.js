@@ -24,7 +24,7 @@ export const useFetchToken = () => {
             if (request.readyState === 4) {
                 const response = JSON.parse(request.responseText)
                 const date = new Date();
-                const expirationDate = date.setMinutes(date.getMinutes() + 50);
+                const expirationDate = date.setMinutes(date.getMinutes() + 86000);
                 const access_token_object = {
                     ...response,
                     isExpired: Date.now() > expirationDate,
