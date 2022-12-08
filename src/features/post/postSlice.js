@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import fetchNewPosts from "../API/fetchNewPosts";
-import useAuth from '../hooks/useAuth'
+import fetchNewPosts from "../../API/fetchNewPosts";
+import useAuth from '../../hooks/useAuth'
 const initialState = {}
 
 export const incrementAsync = createAsyncThunk(
