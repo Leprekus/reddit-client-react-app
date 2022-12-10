@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchNewPosts from "../../API/fetchNewPosts";
 import { useAuth } from '../../hooks/useAuth'
+import { redditPosts } from "../../mocks/responseData";
 const initialState = {
   postsList: [],
   status: 'idle'
@@ -13,9 +14,11 @@ export const fetchPosts = createAsyncThunk(
         try {
           const response = await fetchNewPosts(token.access_token);
           // The value we return becomes the `fulfilled` action payload
-          const postsList = response.data.children.map(post => post.data)
-          console.log(postsList)
-          return postsList;
+          // const postsList = response.data.children.map(post => post.data)
+          // console.log(postsList)
+          // return postsList;
+          const dummyPostsList = redditPosts
+          return dummyPostsList
 
         } catch ( e ) {
           console.log(e)
