@@ -25,8 +25,8 @@ export const RedditPostsList = () => {
             spacing={1}
             >
                 {
-                postsLists.map((data) =>
-                <Grid2 xs={12}>
+                postsLists.map((data, index) =>
+                <Grid2 xs={12} key={index}>
                     <Post
                     key={data.id}
                     data={data}/>
