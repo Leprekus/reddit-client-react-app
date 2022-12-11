@@ -10,6 +10,7 @@ body {
 html {
   scroll-behavior: smooth;
   background-color: #f1f3fc5c;
+  color: rgb(79, 79, 79);
 }
 
 p {
@@ -26,13 +27,8 @@ a:hover {
   text-decoration: underline;
 }
 
-.filter {
-  border: red 2.5px solid;
-  color: red;
-  font-weight: bold;
-  border-radius: 15px;
-  margin: 0 0.2rem;
-  padding: 0 0.8rem 0.2rem 0.8rem;
+.hover:hover {
+  cursor: pointer;
 }
 
 code {

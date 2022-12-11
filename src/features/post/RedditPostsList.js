@@ -11,7 +11,7 @@ export const RedditPostsList = () => {
     useMemo(() => {
         dispatch(fetchPosts())
     }, [])
-    const filter = (color) => {
+    const filterStyle = (color) => {
         return {
             ':hover': {
                 cursor: 'pointer'
@@ -23,6 +23,18 @@ export const RedditPostsList = () => {
             margin: '0 0.2rem',
             padding: '0 0.8rem 0.2rem 0.8rem',
           }
+    }
+    const handleSelectFilter = ({ target }) => {
+        if(target.style.color === 'rgb(255, 255, 255)') {
+            return (
+                target.style.color = target.style.borderColor,
+                target.style.backgroundColor = 'transparent'
+            )
+        }
+        return (
+            target.style.backgroundColor = target.style.borderColor, 
+            target.style.color = '#FFF'
+        )
     }
     return (
         <>
@@ -38,13 +50,13 @@ export const RedditPostsList = () => {
             spacing={10}
             >
                 <Grid2>
-                    <span style={filter('#05d7a0')}>newest</span>
-                    <span style={filter('#f0466e')}>most liked</span>
-                    <span style={filter('#ffd264')}>awards</span>
-                    <span style={filter('#0f8cb4')}>flaired</span>
-                    <span style={filter('#f5a05f')}>videos</span>
-                    <span style={filter('#6e5a7d')}>images</span>
-                    <span style={filter('#053c4b')}>text</span>
+                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#05d7a0')}>newest</span>
+                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f0466e')}>most liked</span>
+                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#ffd264')}>awards</span>
+                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
+                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f5a05f')}>videos</span>
+                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#6e5a7d')}>images</span>
+                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#053c4b')}>text</span>
                 </Grid2>
                 {
                 postsLists.map((data, index) =>
