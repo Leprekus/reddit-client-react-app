@@ -1,12 +1,18 @@
-import { ExpandMore, SendTimeExtensionSharp } from "@mui/icons-material"
-import { Button, Card, CardContent, CardHeader, CardMedia, Collapse, Typography } from "@mui/material"
+import { ArrowDownward, ArrowUpward, InsertComment, OpenInNew } from "@mui/icons-material"
+import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { useDispatch } from "react-redux"
+import { Link  as LinkRouter} from "react-router-dom"
 
 export const Post = ({ data }) => {
   const [expanded, setExpanded] = useState(false)
+  const [viewPostButton, setViewPostButton]  = useState('show more')
   console.log(data)
+  useMemo(() => {
+    if(expanded) setViewPostButton('show less')
+    if(!expanded) setViewPostButton('show more')
+  }, [expanded])
   const dispatch = useDispatch()
   const handleExpandClick = () => {
     setExpanded(!expanded)
@@ -14,25 +20,27 @@ export const Post = ({ data }) => {
 
     return (
         <>
-        <h1>I am the post</h1>
+        <h1 id={data.id}>I am the post</h1>
       <Card 
-      sx={{ width: 600, height: 500 }}
+      sx={{ width: 800 }}
+      variant='elevation'
       >
         <CardHeader
-        avatar='here goes avatar'
+        titleTypographyProps={{ variant: 'h5', margin: '0.4rem 0' }}
         title={ data.title }
-        subheader={ `r/${data.subreddit} Posted by u/${data.author}` }
+        subheader={ `Posted by u/${data.author}` }
+        subheaderTypographyProps={{ variant: 'h6' }}
         />
         { data.post_hint === 'image' &&
         <CardMedia
         component='img'
-        height='194'
         image={data.url}
         />
         }
         { 
         data.is_gallery === true && 
         <Carousel 
+        sx={{width: '100%', height: 'fit-content'}}
         autoPlay={false}
         NavButton={({onClick, className='contained', style, next, prev}) => {
           // Other logic
@@ -52,7 +60,7 @@ export const Post = ({ data }) => {
               return <CardMedia
               key={key}
               component='img'
-              height='194'
+              height='fit-content'
               image={src}
               />
             })
@@ -60,16 +68,35 @@ export const Post = ({ data }) => {
         </Carousel>
         }
         { data.post_hint === 'link' &&
-        <p>Link</p>
+        <>
+        <CardMedia 
+        component='img'
+        sx={{width: 'fit-content', height: 'auto'}}
+        src={data.thumbnail}/>
+        <a href={data.url} target='_blank' rel="noopener noreferrer">
+          <span>
+            {(new URL(data.url)).hostname}
+            <OpenInNew/>
+          </span>
+        </a>
+        </>
         }
-        <Button 
-        onClick={handleExpandClick}
-        >Show More</Button>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent>
-            <Typography>{ data.selftext }</Typography>
+            <Typography paragraph>{ data.selftext }</Typography>
           </CardContent>
         </Collapse>
+        <CardActions>
+          <IconButton><ArrowUpward/></IconButton>
+          <IconButton><ArrowDownward/></IconButton>
+          <IconButton><InsertComment/></IconButton>
+          {data.selftext.length > 0 && 
+          <Button
+          onClick={handleExpandClick}
+          href={expanded ? `#${data.id}` : ''}
+          >{viewPostButton}</Button>}
+          <p>{`r/${data.subreddit}`}</p>
+        </CardActions>
         
       </Card>    
         </>

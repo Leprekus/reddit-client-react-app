@@ -11,6 +11,19 @@ export const RedditPostsList = () => {
     useMemo(() => {
         dispatch(fetchPosts())
     }, [])
+    const filter = (color) => {
+        return {
+            ':hover': {
+                cursor: 'pointer'
+            },
+            border: `${color} 2.5px solid`,
+            color: `${color}`,
+            fontWeight: 'bold',
+            borderRadius: '15px',
+            margin: '0 0.2rem',
+            padding: '0 0.8rem 0.2rem 0.8rem',
+          }
+    }
     return (
         <>
         {
@@ -22,8 +35,17 @@ export const RedditPostsList = () => {
             postsListStatus === 'fulfilled' && 
             <Grid2
             container
-            spacing={1}
+            spacing={10}
             >
+                <Grid2>
+                    <span style={filter('#05d7a0')}>newest</span>
+                    <span style={filter('#f0466e')}>most liked</span>
+                    <span style={filter('#ffd264')}>awards</span>
+                    <span style={filter('#0f8cb4')}>flaired</span>
+                    <span style={filter('#f5a05f')}>videos</span>
+                    <span style={filter('#6e5a7d')}>images</span>
+                    <span style={filter('#053c4b')}>text</span>
+                </Grid2>
                 {
                 postsLists.map((data, index) =>
                 <Grid2 xs={12} key={index}>

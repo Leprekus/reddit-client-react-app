@@ -7,6 +7,34 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+  background-color: #f1f3fc5c;
+}
+
+p {
+  font-family: sans-serif;
+  font-size: 1.20rem;
+}
+
+a {
+  color: #4090c2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.filter {
+  border: red 2.5px solid;
+  color: red;
+  font-weight: bold;
+  border-radius: 15px;
+  margin: 0 0.2rem;
+  padding: 0 0.8rem 0.2rem 0.8rem;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
