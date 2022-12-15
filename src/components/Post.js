@@ -22,8 +22,9 @@ export const Post = ({ data }) => {
         <>
         <h1 id={data.id}>I am the post</h1>
       <Card 
-      sx={{ width: 800 }}
-      variant='elevation'
+      sx={{ width: 800, borderRadius: '10px' }}
+      elevation={3}
+      
       >
         <CardHeader
         titleTypographyProps={{ variant: 'h5', margin: '0.4rem 0' }}
@@ -35,6 +36,7 @@ export const Post = ({ data }) => {
         <CardMedia
         component='img'
         image={data.url}
+        loading='lazy'
         />
         }
         { 
@@ -42,6 +44,7 @@ export const Post = ({ data }) => {
         <Carousel 
         sx={{width: '100%', height: 'fit-content'}}
         autoPlay={false}
+        loading='lazy'
         NavButton={({onClick, className='contained', style, next, prev}) => {
           // Other logic
   
@@ -62,6 +65,7 @@ export const Post = ({ data }) => {
               component='img'
               height='fit-content'
               image={src}
+              loading='lazy'
               />
             })
           }
@@ -70,6 +74,7 @@ export const Post = ({ data }) => {
         { data.post_hint === 'link' &&
         <>
         <CardMedia 
+        loading='lazy'
         component='img'
         sx={{width: 'fit-content', height: 'auto'}}
         src={data.thumbnail}/>
