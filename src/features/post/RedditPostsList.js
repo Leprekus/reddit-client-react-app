@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import {  useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../../components/Post";
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
@@ -47,20 +47,28 @@ export const RedditPostsList = () => {
             postsListStatus === 'fulfilled' && 
             <Grid2
             container
-            spacing={10}
+            alignContent={'center'}
+            direction='column'
+            padding='1.245rem'
             >
-                <Grid2>
-                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#05d7a0')}>newest</span>
-                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f0466e')}>most liked</span>
-                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#ffd264')}>awards</span>
-                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
-                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f5a05f')}>videos</span>
-                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#6e5a7d')}>images</span>
-                    <span onClick={handleSelectFilter} className="hover" style={filterStyle('#053c4b')}>text</span>
-                </Grid2>
+            <Grid2 >
+                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#05d7a0')}>newest</span>
+                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f0466e')}>most liked</span>
+                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#ffd264')}>awards</span>
+                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
+                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f5a05f')}>videos</span>
+                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#6e5a7d')}>images</span>
+                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#053c4b')}>text</span>
+            </Grid2>
                 {
                 postsLists.map((data, index) =>
-                <Grid2 xs={12} key={index}>
+                <Grid2 key={index} item 
+                xs={12} 
+                md={6} 
+                lg={6} 
+                xl={4}
+                margin='auto'
+                >
                     <Post
                     key={data.id}
                     data={data}/>

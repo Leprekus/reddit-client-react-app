@@ -22,7 +22,7 @@ export const Post = ({ data }) => {
         <>
         <h1 id={data.id}>I am the post</h1>
       <Card 
-      sx={{ width: 800, borderRadius: '10px' }}
+      sx={{ borderRadius: '10px' }}
       elevation={3}
       
       >
