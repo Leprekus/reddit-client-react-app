@@ -16,7 +16,6 @@ export const Post = ({ data }) => {
   const dispatch = useDispatch()
   const handleExpandClick = (e) => {
     setExpanded(!expanded)
-    return <Navigate to='lol'/>
   }
 
     return (
