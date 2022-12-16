@@ -1,6 +1,8 @@
 import { Link, Navigate, useOutlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { Root } from "../routes/Root";
+import { ThemeProvider } from '@mui/material'
+import theme from '../theme/theme';
 
 //Receives context from AuthProvider 
 //in order to render login or homePage depending if a user exists
@@ -15,7 +17,9 @@ export const ProtectedLayout = () => {
   return (
     <div>
       <Root/>
-      { outlet }
+        <ThemeProvider theme={theme}>
+          { outlet }
+        </ThemeProvider>
     </div>
   )
 };

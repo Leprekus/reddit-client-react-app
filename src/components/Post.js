@@ -1,9 +1,9 @@
 import { ArrowDownward, ArrowUpward, InsertComment, OpenInNew } from "@mui/icons-material"
-import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton } from "@mui/material"
+import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Link } from "@mui/material"
+import { Link as RouterLink, Navigate } from "react-router-dom"
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Link  as LinkRouter} from "react-router-dom"
 
 export const Post = ({ data }) => {
   const [expanded, setExpanded] = useState(false)
@@ -14,18 +14,15 @@ export const Post = ({ data }) => {
     if(!expanded) setViewPostButton('show more')
   }, [expanded])
   const dispatch = useDispatch()
-  const handleExpandClick = () => {
+  const handleExpandClick = (e) => {
     setExpanded(!expanded)
+    return <Navigate to='lol'/>
   }
 
     return (
         <>
         <h1 id={data.id}>I am the post</h1>
-      <Card 
-      sx={{ borderRadius: '10px' }}
-      elevation={3}
-      
-      >
+      <Card>
         <CardHeader
         titleTypographyProps={{ variant: 'h5', margin: '0.4rem 0' }}
         title={ data.title }
@@ -94,13 +91,13 @@ export const Post = ({ data }) => {
         <CardActions>
           <IconButton><ArrowUpward/></IconButton>
           <IconButton><ArrowDownward/></IconButton>
-          <IconButton><InsertComment/></IconButton>
+          <IconButton sx={{ borderRadius: '5px'}}><InsertComment/></IconButton>
           {data.selftext.length > 0 && 
           <Button
           onClick={handleExpandClick}
           href={expanded ? `#${data.id}` : ''}
           >{viewPostButton}</Button>}
-          <p>{`r/${data.subreddit}`}</p>
+          <Button component={RouterLink} sx={{ margin: '0 1rem'}}>{`r/${data.subreddit}`}</Button>
         </CardActions>
         
       </Card>    

@@ -27,8 +27,30 @@ a:hover {
   text-decoration: underline;
 }
 
+
 .hover:hover {
   cursor: pointer;
+  
+}
+
+.MuiPaper-root {
+  border-radius: 25px;
+  box-shadow: 0px 20px 25px rgba(0, 0, 0, 0.10) !important;
+  padding: 0.5rem 0.85rem;
+}
+
+.MuiIconButton-root, .MuiButtonBase-root {
+  background: linear-gradient(145deg, #f5f5f5, #faf8f8);
+  box-shadow:  6px 6px 12px rgba(195, 195, 195, 0.5),
+             -6px -6px 12px #fdfdfd;
+}
+
+.MuiIconButton-root:hover, .MuiButtonBase-root:hover {
+  transition: box-shadow 0.125s ease-in;
+  /* background: linear-gradient(145deg, #e5e5e5, #ededed); */
+  background: linear-gradient(145deg, #f5f5f5, #faf8f8);
+  box-shadow:  6px 6px 12px rgba(195, 195, 195, 0.9),
+             -6px -6px 12px #fdfdfd;
 }
 
 code {

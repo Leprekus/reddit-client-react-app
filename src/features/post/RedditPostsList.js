@@ -20,8 +20,9 @@ export const RedditPostsList = () => {
             color: `${color}`,
             fontWeight: 'bold',
             borderRadius: '15px',
-            margin: '0 0.2rem',
+            margin: '0.345rem ',
             padding: '0 0.8rem 0.2rem 0.8rem',
+            
           }
     }
     const handleSelectFilter = ({ target }) => {
@@ -51,7 +52,7 @@ export const RedditPostsList = () => {
             direction='column'
             padding='1.245rem'
             >
-            <Grid2 >
+            <Grid2 container item wrap='wrap' margin='auto'>
                 <span onClick={handleSelectFilter} className="hover" style={filterStyle('#05d7a0')}>newest</span>
                 <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f0466e')}>most liked</span>
                 <span onClick={handleSelectFilter} className="hover" style={filterStyle('#ffd264')}>awards</span>
