@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../../components/Post";
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { fetchPosts, selectPostsLists, selectPostsListStatus } from "./postSlice";
+import { Comments } from "../../components/Comments";
 export const RedditPostsList = () => {
     const dispatch = useDispatch()
     const postsListStatus = useSelector(selectPostsListStatus)
     const postsLists = useSelector(selectPostsLists)
-    const 
+   
     useMemo(() => {
         dispatch(fetchPosts())
     }, [])
@@ -71,12 +72,13 @@ export const RedditPostsList = () => {
                 xl={4}
                 margin='auto'
                 >
-                    <Post
-                    key={data.id}
-                    data={data}/>
-                    {
-                        
-                    }
+                <Post
+                key={data.id}
+                data={data}/>
+                {/* {displayComments && 
+                <Comments
+                key={`${data.id}_comment-section`}/>
+                } */}
                 </Grid2>
                 )
                 }

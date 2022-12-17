@@ -4,11 +4,11 @@ import { Link as RouterLink, Navigate } from "react-router-dom"
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useState } from "react"
 import { useDispatch } from "react-redux"
+import { fetchComments } from "../features/post/postSlice"
 
 export const Post = ({ data }) => {
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
-  console.log(data)
   useMemo(() => {
     if(expanded) setViewPostButton('show less')
     if(!expanded) setViewPostButton('show more')
@@ -17,7 +17,9 @@ export const Post = ({ data }) => {
   const handleExpandClick = (e) => {
     setExpanded(!expanded)
   }
-
+  const handleDisplayComments = (e) => {
+    dispatch(fetchComments(data.id))
+  }
     return (
         <>
       <Card>
@@ -90,7 +92,7 @@ export const Post = ({ data }) => {
         <CardActions>
           <IconButton aria-label="upvote"><ArrowUpward/></IconButton>
           <IconButton aria-label="downvote"><ArrowDownward/></IconButton>
-          <IconButton sx={{ borderRadius: '5px'}} aria-label="comments"><InsertComment/></IconButton>
+          <IconButton sx={{ borderRadius: '5px'}} aria-label="comments" onClick={handleDisplayComments}><InsertComment/></IconButton>
           {data.selftext.length > 0 && 
           <Button
           onClick={handleExpandClick}
