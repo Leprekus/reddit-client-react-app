@@ -7,7 +7,7 @@ export const RedditPostsList = () => {
     const dispatch = useDispatch()
     const postsListStatus = useSelector(selectPostsListStatus)
     const postsLists = useSelector(selectPostsLists)
-    
+    const 
     useMemo(() => {
         dispatch(fetchPosts())
     }, [])
@@ -51,6 +51,7 @@ export const RedditPostsList = () => {
             alignContent={'center'}
             direction='column'
             padding='1.245rem'
+            spacing={10}
             >
             <Grid2 container item wrap='wrap' margin='auto'>
                 <span onClick={handleSelectFilter} className="hover" style={filterStyle('#05d7a0')}>newest</span>
@@ -64,8 +65,8 @@ export const RedditPostsList = () => {
                 {
                 postsLists.map((data, index) =>
                 <Grid2 key={index} item 
-                xs={12} 
-                md={6} 
+                xs={12}
+                md={8} 
                 lg={6} 
                 xl={4}
                 margin='auto'
@@ -73,6 +74,9 @@ export const RedditPostsList = () => {
                     <Post
                     key={data.id}
                     data={data}/>
+                    {
+                        
+                    }
                 </Grid2>
                 )
                 }

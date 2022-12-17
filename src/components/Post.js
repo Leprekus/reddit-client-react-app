@@ -20,9 +20,9 @@ export const Post = ({ data }) => {
 
     return (
         <>
-        <h1 id={data.id}>I am the post</h1>
       <Card>
         <CardHeader
+        id={data.id}
         titleTypographyProps={{ variant: 'h5', margin: '0.4rem 0' }}
         title={ data.title }
         subheader={ `Posted by u/${data.author}` }
@@ -88,15 +88,19 @@ export const Post = ({ data }) => {
           </CardContent>
         </Collapse>
         <CardActions>
-          <IconButton><ArrowUpward/></IconButton>
-          <IconButton><ArrowDownward/></IconButton>
-          <IconButton sx={{ borderRadius: '5px'}}><InsertComment/></IconButton>
+          <IconButton aria-label="upvote"><ArrowUpward/></IconButton>
+          <IconButton aria-label="downvote"><ArrowDownward/></IconButton>
+          <IconButton sx={{ borderRadius: '5px'}} aria-label="comments"><InsertComment/></IconButton>
           {data.selftext.length > 0 && 
           <Button
           onClick={handleExpandClick}
           href={expanded ? `#${data.id}` : ''}
+          aria-label="show more"
           >{viewPostButton}</Button>}
-          <Button component={RouterLink} sx={{ margin: '0 1rem'}}>{`r/${data.subreddit}`}</Button>
+          <Button 
+            sx={{ margin: '0 1rem'}}
+            aria-label="subreddit">
+            {`r/${data.subreddit}`}</Button>
         </CardActions>
         
       </Card>    
