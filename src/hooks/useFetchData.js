@@ -1,4 +1,6 @@
-export default async function fetchNewPosts (token) {
+import { useAuth } from "./useAuth"
+
+export default async function useFetchData (parameters) {
     // const params = new URLSearchParams({
     //     q : 'Nuclear Revenge'
     // })
@@ -19,13 +21,11 @@ export default async function fetchNewPosts (token) {
     //         console.log(resObject)
     //     }
     // };
-    const params = new URLSearchParams({
-        q: 'Nuclear Revenge'
-    })
-    const  res = await fetch(`https://oauth.reddit.com/.json?sort=new`, {
+    const { token } = useAuth()
+    const  res = await fetch(`https://oauth.reddit.com/${parameters}`, {
         method: 'GET',
         headers: {
-            Authorization: `bearer ${token}` ,
+            Authorization: `bearer ${token.access_token}` ,
         },
     })
 
