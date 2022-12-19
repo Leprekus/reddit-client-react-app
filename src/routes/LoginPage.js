@@ -1,9 +1,6 @@
 import { Button } from "@mui/material"
-import { useAuth } from "../hooks/useAuth"
 import randomstring from "randomstring"
-import { useFetchToken } from "../hooks/useFetchToken"
 import { useEffect } from "react"
-import { useLocalStorage } from "../hooks/useLocalStorage"
 import { fetchToken, selectCurrentRandomString, selectCurrentToken, setRandomString } from "../features/auth/authSlice"
 import { useDispatch, useSelector } from "react-redux"
 import { Navigate } from "react-router-dom"
@@ -29,16 +26,14 @@ export const LoginPage = () => {
             //send post request and store token
             dispatch(fetchToken(code))
         }
-    }, [urlContainsCurrentRandomString, currentToken, dispatch])
-    if(currentToken) {
+    }, [urlContainsCurrentRandomString, dispatch])
+    console.log(currentToken)
+    if(currentToken?.access_token) {
         return <Navigate to='/homepage' replace/>
     }
     const handleLogin = () => {
         const authEndpoint = `https://www.reddit.com/api/v1/authorize?client_id=${process.env.REACT_APP_REDDIT_ID}&response_type=code&state=${currentRandomString}&redirect_uri=${process.env.REACT_APP_URI}&duration=permanent&scope=${process.env.REACT_APP_SCOPE_STRING}`
-        window.location.href = authEndpoint
-        // setCookie('test', 2324, Date.now())
-        // setCookie('test2', 2324, Date.now())
-        
+        window.location.href = authEndpoint        
     }
     return ( 
         <div>

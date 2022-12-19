@@ -1,17 +1,13 @@
-import {  useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Post } from "../../components/Post";
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
-import { fetchPosts, selectPostsLists, selectPostsListStatus } from "./postSlice";
-import { Comments } from "../../components/Comments";
+import { useSelector } from "react-redux";
+import { selectPostsLists, selectPostsListStatus } from "./postSlice";
+
+
 export const RedditPostsList = () => {
-    const dispatch = useDispatch()
     const postsListStatus = useSelector(selectPostsListStatus)
     const postsLists = useSelector(selectPostsLists)
-   
-    useMemo(() => {
-        dispatch(fetchPosts())
-    }, [])
+
     const filterStyle = (color) => {
         return {
             ':hover': {

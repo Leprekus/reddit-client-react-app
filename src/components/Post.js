@@ -1,6 +1,5 @@
 import { ArrowDownward, ArrowUpward, InsertComment, OpenInNew } from "@mui/icons-material"
 import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Link } from "@mui/material"
-import { Link as RouterLink, Navigate } from "react-router-dom"
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useState } from "react"
 import { useDispatch } from "react-redux"

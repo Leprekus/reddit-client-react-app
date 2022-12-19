@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchCommentSection from "../../API/fetchCommentSection";
-import useFetchData from "../../hooks/useFetchData";
-import { useAuth } from '../../hooks/useAuth'
+import makeFetchRequest from "../../hooks/makeFetchRequest";
 import { redditPosts } from "../../mocks/responseData";
 const initialState = {
   postsList: [],
@@ -12,11 +11,19 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk(
     'posts/fetchNewPosts',
-    async () => {
+    async (args) => {
+      const [token, params] = args
         try {
-          const homepage = '.json?sort=new'
-          const response = await useFetchData(homepage);
-          const postsList = response.data.children.map(post => post.data)
+          console.log(token)
+          const options = {
+            method: 'GET',
+            headers: {
+                Authorization: `bearer ${token.access_token}` ,
+            },
+        }
+          const response = await fetch(`https://oauth.reddit.com/${params}`, options)
+          const responseJSON = await response.json()
+          const postsList = responseJSON.data.children.map(post => post.data)
           console.log(postsList)
           return postsList;
           // const dummyPostsList = redditPosts
@@ -26,12 +33,13 @@ export const fetchPosts = createAsyncThunk(
         }
     }
   );
+
   export const fetchComments = createAsyncThunk(
     'posts/fetchComments',
     async (id) => {
       try {
       const comments = `r/OldSchoolCool/comments/${id}`
-      const response = await useFetchData(comments);
+      const response = await makeFetchRequest(comments);
       const commentsList = response[1].data.children.map(post => post.data)
       console.log(commentsList)
       // The value we return becomes the `fulfilled` action payload
