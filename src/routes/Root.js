@@ -1,9 +1,8 @@
 import { Button } from "@mui/material"
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, Navigate, Outlet } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import { logout, selectCurrentToken, fetchClientToken } from "../features/auth/authSlice"
-import { fetchPosts } from "../features/post/postSlice";
 
 export const Root = () => {
     const dispatch = useDispatch()
@@ -11,11 +10,11 @@ export const Root = () => {
     const [login, setLogin] = useState(() => {
         return !currentToken ? 'Login' : 'Logout'
     })
-        useMemo(() => {
-            if(!currentToken){ 
-                dispatch(fetchClientToken()) 
-            }
-        }, [])
+    useMemo(() => {
+        if(!currentToken){ 
+            dispatch(fetchClientToken()) 
+        }
+    }, [])
     
     const handleToggleLogin = () => {
         if(login === 'Login') setLogin('Logout')

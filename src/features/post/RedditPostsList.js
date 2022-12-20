@@ -1,14 +1,12 @@
 import { Post } from "../../components/Post";
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { useSelector } from "react-redux";
-import { selectPostsLists, selectPostsListStatus } from "./postSlice";
-
+import { selectCommentsLists, selectPostsLists, selectPostsListStatus } from "./postSlice";
+import { Comments } from  '../../components/Comments'
 
 export const RedditPostsList = () => {
     const postsListStatus = useSelector(selectPostsListStatus)
     const postsLists = useSelector(selectPostsLists) || []
-
-
     const filterStyle = (color) => {
         return {
             ':hover': {
@@ -61,23 +59,28 @@ export const RedditPostsList = () => {
                 <span onClick={handleSelectFilter} className="hover" style={filterStyle('#053c4b')}>text</span>
             </Grid2>
                 {
-                postsLists.map((data, index) =>
-                <Grid2 key={index} item 
-                xs={12}
-                md={8} 
-                lg={6} 
-                xl={4}
-                margin='auto'
-                >
-                <Post
-                key={data.id}
-                data={data}/>
-                {/* {displayComments && 
-                <Comments
-                key={`${data.id}_comment-section`}/>
-                } */}
-                </Grid2>
-                )
+                Object.keys(postsLists).map((id, index) => {
+                    const data = postsLists[id]
+                    return (
+                        <Grid2 key={index} item 
+                        xs={12}
+                        md={8} 
+                        lg={6} 
+                        xl={4}
+                        margin='auto'
+                        >
+                        <Post
+                        key={data.id}
+                        data={data.postData}/>
+                        {data.displayComments && 
+                        <Comments
+                        postId={data.id}
+                        key={`${data.id}_comment-section`}/>
+                        }
+                        </Grid2>
+        
+                    )
+                })
                 }
             </Grid2>
         }

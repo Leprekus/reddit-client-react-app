@@ -1,8 +1,8 @@
 import { RedditPostsList } from "../features/post/RedditPostsList"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../features/post/postSlice";
-import { fetchClientToken, selectCurrentToken } from "../features/auth/authSlice";
-import { useEffect, useMemo } from "react";
+import { selectCurrentToken } from "../features/auth/authSlice";
+import { useMemo } from "react";
 
 
 export const HomePage = () => {
@@ -12,9 +12,7 @@ export const HomePage = () => {
     const homepageParams = '.json?sort=new'
     const args = [currentToken, homepageParams]
     useMemo(() => {
-        if(!currentToken){ 
-            dispatch(fetchClientToken()) 
-        }
+
         if(currentToken) {
             //populates postsLists used by RedditPostsList c)omponent
             dispatch(fetchPosts(args))

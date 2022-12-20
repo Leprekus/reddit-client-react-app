@@ -2,22 +2,24 @@ import { ArrowDownward, ArrowUpward, InsertComment, OpenInNew } from "@mui/icons
 import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Link } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { fetchComments } from "../features/post/postSlice"
+import { selectCurrentToken } from "../features/auth/authSlice"
 
 export const Post = ({ data }) => {
+  const dispatch = useDispatch()
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
+  const currentToken = useSelector(selectCurrentToken)
   useMemo(() => {
     if(expanded) setViewPostButton('show less')
     if(!expanded) setViewPostButton('show more')
   }, [expanded])
-  const dispatch = useDispatch()
   const handleExpandClick = (e) => {
     setExpanded(!expanded)
   }
   const handleDisplayComments = (e) => {
-    dispatch(fetchComments(data.id))
+    dispatch(fetchComments([currentToken, data.subreddit, data.id]))
   }
     return (
         <>
