@@ -2,21 +2,24 @@ import { RedditPostsList } from "../features/post/RedditPostsList"
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../features/post/postSlice";
 import { fetchClientToken, selectCurrentToken } from "../features/auth/authSlice";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 
 export const HomePage = () => {
-    //handles logic of whether user or client homepage should be fetched
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
+    //handles logic of whether user or client homepage should be fetched
     const homepageParams = '.json?sort=new'
     const args = [currentToken, homepageParams]
     useMemo(() => {
-        if(!currentToken) dispatch(fetchClientToken())
-        //populates postsLists used by RedditPostsList component
-        if(currentToken.access_token) dispatch(fetchPosts(args))
+        if(!currentToken){ 
+            dispatch(fetchClientToken()) 
+        }
+        if(currentToken) {
+            //populates postsLists used by RedditPostsList c)omponent
+            dispatch(fetchPosts(args))
+        }
     }, [])
-
     return ( 
    <>
         <h1>

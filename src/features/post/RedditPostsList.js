@@ -6,7 +6,8 @@ import { selectPostsLists, selectPostsListStatus } from "./postSlice";
 
 export const RedditPostsList = () => {
     const postsListStatus = useSelector(selectPostsListStatus)
-    const postsLists = useSelector(selectPostsLists)
+    const postsLists = useSelector(selectPostsLists) || []
+
 
     const filterStyle = (color) => {
         return {

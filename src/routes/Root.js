@@ -1,14 +1,22 @@
 import { Button } from "@mui/material"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, Outlet } from "react-router-dom"
-import { logout, selectCurrentToken } from "../features/auth/authSlice"
+import { Link, Navigate, Outlet } from "react-router-dom"
+import { logout, selectCurrentToken, fetchClientToken } from "../features/auth/authSlice"
+import { fetchPosts } from "../features/post/postSlice";
+
 export const Root = () => {
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
     const [login, setLogin] = useState(() => {
         return !currentToken ? 'Login' : 'Logout'
     })
+        useMemo(() => {
+            if(!currentToken){ 
+                dispatch(fetchClientToken()) 
+            }
+        }, [])
+    
     const handleToggleLogin = () => {
         if(login === 'Login') setLogin('Logout')
         if(login === 'Logout') {
@@ -26,7 +34,11 @@ export const Root = () => {
             <Button  component={Link} variant='outline' to='homepage'>Notifications</Button>
             <Button  component={Link} variant='outline' to={login === 'Login' ? '/login' : ''} onClick={handleToggleLogin}>{login}</Button>:
         </nav>
-        <Outlet/>
+        {currentToken ?
+             <Outlet/>:
+             <h1>Loading...</h1>
+        }
+       
     </main>
    ) 
 }
