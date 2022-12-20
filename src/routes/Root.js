@@ -1,8 +1,10 @@
-import { Button } from "@mui/material"
+import { Button, IconButton, Input, InputAdornment, TextField } from "@mui/material"
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet } from "react-router-dom"
 import { logout, selectCurrentToken, fetchClientToken } from "../features/auth/authSlice"
+import { Unstable_Grid2 as Grid2 } from "@mui/material";
+import { Search } from "@mui/icons-material"
 
 export const Root = () => {
     const dispatch = useDispatch()
@@ -26,13 +28,18 @@ export const Root = () => {
     return (
     <main>
         <h1>I am the root</h1>
-        <nav >
+        <Grid2 container spacing={4} justifySelf='center'>
             <Button  component={Link} variant='outline' data-testid='home-page-button' to='homepage'>Home Page</Button>
-            <Button  component={Link} variant='outline' to='homepage'>Search</Button>
+            <TextField 
+            placeholder="Search"
+            InputProps={{
+                endAdornment: <IconButton><Search/></IconButton>
+            }}
+            />
             <Button  component={Link} variant='outline' to='homepage'>Trending</Button>
             <Button  component={Link} variant='outline' to='homepage'>Notifications</Button>
             <Button  component={Link} variant='outline' to={login === 'Login' ? '/login' : ''} onClick={handleToggleLogin}>{login}</Button>:
-        </nav>
+        </Grid2>
         {currentToken ?
              <Outlet/>:
              <h1>Loading...</h1>

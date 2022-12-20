@@ -65,7 +65,7 @@ export const postSlice = createSlice({
       toggleDisplayComments: (state, action) => {
         const id = action.payload
         state.postsList[id].displayComments = !state.postsList[id].displayComments
-      }
+      },
     },
     extraReducers: (builder) => {
       builder

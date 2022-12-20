@@ -2,7 +2,7 @@ import { Post } from "../../components/Post";
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectCommentsLists, selectPostsLists, selectPostsListStatus } from "./postSlice";
-import { Comments } from  '../../components/Comments'
+import { CommentSection } from  '../../components/CommentSection'
 
 export const RedditPostsList = () => {
     const postsListStatus = useSelector(selectPostsListStatus)
@@ -71,9 +71,10 @@ export const RedditPostsList = () => {
                         >
                         <Post
                         key={data.id}
-                        data={data.postData}/>
+                        data={data.postData}
+                        text={data.postData.selftext}/>
                         {data.displayComments && 
-                        <Comments
+                        <CommentSection
                         postId={data.id}
                         key={`${data.id}_comment-section`}/>
                         }

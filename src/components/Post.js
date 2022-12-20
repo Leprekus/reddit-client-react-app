@@ -31,22 +31,22 @@ export const Post = ({ data }) => {
         subheader={ `Posted by u/${data.author}` }
         subheaderTypographyProps={{ variant: 'h6' }}
         />
-        { data.post_hint === 'image' &&
+        { //handle images 
+        data.post_hint === 'image' &&
         <CardMedia
         component='img'
         image={data.url}
         loading='lazy'
         />
         }
-        { 
+        { //handle galleries
         data.is_gallery === true && 
         <Carousel 
         sx={{width: '100%', height: 'fit-content'}}
         autoPlay={false}
         loading='lazy'
         NavButton={({onClick, className='contained', style, next, prev}) => {
-          // Other logic
-  
+          // render buttons to cycle gallery
           return (
               <Button onClick={onClick} className={className} style={style}>
                   {next && "Next"}
@@ -70,7 +70,8 @@ export const Post = ({ data }) => {
           }
         </Carousel>
         }
-        { data.post_hint === 'link' &&
+        { //handle link posts  
+        data.post_hint === 'link' &&
         <>
         <CardMedia 
         loading='lazy'
@@ -94,7 +95,7 @@ export const Post = ({ data }) => {
           <IconButton aria-label="upvote"><ArrowUpward/></IconButton>
           <IconButton aria-label="downvote"><ArrowDownward/></IconButton>
           <IconButton sx={{ borderRadius: '5px'}} aria-label="comments" onClick={handleDisplayComments}><InsertComment/></IconButton>
-          {data.selftext.length > 0 && 
+          {data.selftext?.length > 0 && 
           <Button
           onClick={handleExpandClick}
           href={expanded ? `#${data.id}` : ''}
