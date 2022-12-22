@@ -57,7 +57,7 @@ export const fetchPosts = createAsyncThunk(
       // The value we return becomes the `fulfilled` action payload
       thunkAPi.dispatch(toggleDisplayComments(id))
       return { id, updatedComments };
-      } catch( e ) { console.log(e)}
+      } catch( e ) { console.error(e)}
     }
   );  
   export const fetchData = createAsyncThunk(
@@ -114,9 +114,9 @@ export const postSlice = createSlice({
           state.commentStatus = 'loading';
         })
         .addCase(fetchComments.fulfilled, (state, action) => {
-          const { id, updatedComments } = action.payload
-          state.commentStatus = 'fulfilled';
-          state.postsList[id].comments = updatedComments;
+          // const { id, updatedComments } = action.payload
+          // state.commentStatus = 'fulfilled';
+          // state.postsList[id].comments = updatedComments;
         })
         .addCase(fetchComments.rejected, (state, action) => {
           state.commentStatus = 'rejected';
