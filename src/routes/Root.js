@@ -5,10 +5,12 @@ import { Link, Outlet } from "react-router-dom"
 import { logout, selectCurrentToken, fetchClientToken } from "../features/auth/authSlice"
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { Search } from "@mui/icons-material"
+import { fetchData } from "../features/post/postSlice"
 
 export const Root = () => {
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
+    const [searchField, setSearchField] = useState('')
     const [login, setLogin] = useState(() => {
         return !currentToken ? 'Login' : 'Logout'
     })
@@ -25,15 +27,20 @@ export const Root = () => {
             dispatch(logout())
         }
     }
+    const handleFetchQuery = () => {
+        dispatch(fetchData(searchField))
+    }
     return (
     <main>
         <h1>I am the root</h1>
-        <Grid2 container spacing={4} justifySelf='center'>
+        <Grid2 container columnGap={2}>
             <Button  component={Link} variant='outline' data-testid='home-page-button' to='homepage'>Home Page</Button>
             <TextField 
             placeholder="Search"
+            value={searchField}
+            onChange={({ target }) => setSearchField(target.value)}
             InputProps={{
-                endAdornment: <IconButton><Search/></IconButton>
+                endAdornment: <IconButton onClick={handleFetchQuery} component={Link} to='search'><Search/></IconButton>
             }}
             />
             <Button  component={Link} variant='outline' to='homepage'>Trending</Button>

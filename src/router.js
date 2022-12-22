@@ -4,6 +4,7 @@ import ErrorPage from './ErrorPage';
 import { HomePage } from './routes/HomePage';
 import { LoginPage } from './routes/LoginPage';
 import { TestComponent } from './mocks/TestRequests';
+import { Search } from './routes/Search';
 export const router = createBrowserRouter([
     {
       path: '/',
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
         {
           path: '/',
           element: <HomePage/>
+        },
+        {
+          path: '/search',
+          element: <Search/>,
         }
       ]
   
@@ -20,5 +25,5 @@ export const router = createBrowserRouter([
     {
       path: '/login',
       element: <LoginPage/>,
-    }
+    },
   ])
