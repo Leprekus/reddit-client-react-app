@@ -34,9 +34,9 @@ export const Root = () => {
     <main>
         <h1>I am the root</h1>
         <Grid2 container columnGap={2}>
-            <Button  component={Link} variant='outline' data-testid='home-page-button' to='homepage'>Home Page</Button>
+            <Button  component={Link} variant='outline' data-testid='home-page-button' to='/'>Home Page</Button>
             <TextField 
-            placeholder="Search"
+            placeholder="Search Reddit"
             value={searchField}
             onChange={({ target }) => setSearchField(target.value)}
             InputProps={{

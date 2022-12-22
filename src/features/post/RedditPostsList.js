@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCommentsLists, selectPostsLists, selectPostsListStatus } from "./postSlice";
 import { CommentSection } from  '../../components/CommentSection'
 
-export const RedditPostsList = () => {
-    const postsListStatus = useSelector(selectPostsListStatus)
-    const postsLists = useSelector(selectPostsLists) || []
+export const RedditPostsList = ({ list }) => {
     const filterStyle = (color) => {
         return {
             ':hover': {
@@ -35,13 +33,6 @@ export const RedditPostsList = () => {
     }
     return (
         <>
-        {
-            postsListStatus === 'loading' &&
-            <p>Loading...</p>
-        }
-         
-        {
-            postsListStatus === 'fulfilled' && 
             <Grid2
             container
             alignContent={'center'}
@@ -59,8 +50,8 @@ export const RedditPostsList = () => {
                 <span onClick={handleSelectFilter} className="hover" style={filterStyle('#053c4b')}>text</span>
             </Grid2>
                 {
-                Object.keys(postsLists).map((id, index) => {
-                    const data = postsLists[id]
+                Object.keys(list).map((id, index) => {
+                    const data = list[id]
                     return (
                         <Grid2 key={index} item 
                         xs={12}
@@ -84,13 +75,6 @@ export const RedditPostsList = () => {
                 })
                 }
             </Grid2>
-        }
-        
-        {
-            postsListStatus === 'rejected' && 
-            <p>Error</p>
-        }
-
         </>
     )
 }

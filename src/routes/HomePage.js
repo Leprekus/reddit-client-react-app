@@ -1,6 +1,6 @@
 import { RedditPostsList } from "../features/post/RedditPostsList"
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "../features/post/postSlice";
+import { fetchPosts, selectPostsListStatus, selectPostsLists } from "../features/post/postSlice";
 import { selectCurrentToken } from "../features/auth/authSlice";
 import { useMemo } from "react";
 
@@ -18,12 +18,29 @@ export const HomePage = () => {
             dispatch(fetchPosts(args))
         }
     }, [])
+    const postsListStatus = useSelector(selectPostsListStatus)
+    const postsList = useSelector(selectPostsLists) || []
+
     return ( 
    <>
         <h1>
             Home Page rendered
         </h1>
-        <RedditPostsList/>
+        {
+            postsListStatus === 'loading' &&
+            <p>Loading...</p>
+        }
+        {
+            postsListStatus === 'fulfilled' && 
+            <RedditPostsList
+            list={postsList}
+            />
+        }
+        {
+            postsListStatus === 'rejected' && 
+            <p>Error</p>
+        }
+
     </>
     )
 }
