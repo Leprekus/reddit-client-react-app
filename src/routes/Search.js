@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { Post } from "../components/Post"
 import { selectSearchResultStatus, selectSearchResults } from "../features/post/postSlice"
+import { RedditPostsList } from "../features/post/RedditPostsList"
 
 export const Search = () => {
     const searchResultStatus = useSelector(selectSearchResultStatus)
@@ -14,9 +15,9 @@ export const Search = () => {
         }
         {
             searchResultStatus === 'fulfilled' &&
-            searchResults.map(result => (
-                <Post id={result.id} data={result}/>
-            ))
+            <RedditPostsList 
+            list={searchResults}
+            />
         }
         </>
     )

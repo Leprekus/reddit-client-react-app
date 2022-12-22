@@ -73,9 +73,17 @@ export const fetchPosts = createAsyncThunk(
             }
         })
         const resJSON = await res.json()
-        console.log(resJSON)
-        const data = resJSON.data.children.map(res => res.data)
-        return data
+        const updatedSearchResults = {}
+        resJSON.data.children.forEach(res =>( 
+          updatedSearchResults[res.data.id] = {
+            id: res.data.id,
+            postData: res.data,
+            comments: [],
+            displayComments: false
+
+            }
+          ))
+        return updatedSearchResults
 
       } catch(e) { console.log(e) }
     }

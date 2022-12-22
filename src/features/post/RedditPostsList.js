@@ -5,6 +5,7 @@ import { selectCommentsLists, selectPostsLists, selectPostsListStatus } from "./
 import { CommentSection } from  '../../components/CommentSection'
 
 export const RedditPostsList = ({ list }) => {
+    console.log(list)
     const filterStyle = (color) => {
         return {
             ':hover': {
@@ -63,7 +64,7 @@ export const RedditPostsList = ({ list }) => {
                         <Post
                         key={data.id}
                         data={data.postData}
-                        text={data.postData.selftext}/>
+                        />
                         {data.displayComments && 
                         <CommentSection
                         postId={data.id}
