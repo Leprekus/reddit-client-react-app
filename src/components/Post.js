@@ -10,7 +10,6 @@ import { Link, useParams } from "react-router-dom"
 export const Post = ({ data }) => {
   const dispatch = useDispatch()
   const { subreddit } = useParams()
-  console.log(subreddit)
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
   const currentToken = useSelector(selectCurrentToken)
