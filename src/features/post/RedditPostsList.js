@@ -1,10 +1,11 @@
 import { Post } from "../../components/Post";
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
-import { useSelector } from "react-redux";
-import { selectCommentsLists, selectPostsLists, selectPostsListStatus } from "./postSlice";
 import { CommentSection } from  '../../components/CommentSection'
+import { useState } from "react";
 
 export const RedditPostsList = ({ list }) => {
+    //get object keys
+    const [listKeys, setListKeys] = useState(Object.keys(list))
     const filterStyle = (color) => {
         return {
             ':hover': {
@@ -17,19 +18,54 @@ export const RedditPostsList = ({ list }) => {
             margin: '0.345rem ',
             padding: '0 0.8rem 0.2rem 0.8rem',
             
-          }
+        }
     }
     const handleSelectFilter = ({ target }) => {
         if(target.style.color === 'rgb(255, 255, 255)') {
             return (
                 target.style.color = target.style.borderColor,
                 target.style.backgroundColor = 'transparent'
-            )
-        }
-        return (
-            target.style.backgroundColor = target.style.borderColor, 
-            target.style.color = '#FFF'
+                )
+            }
+            return (
+                target.style.backgroundColor = target.style.borderColor, 
+                target.style.color = '#FFF'
+                )
+            }
+    const handleSelectNewest = (e) => {
+        handleSelectFilter(e)
+        const newestKeys = listKeys.sort((a, b) => 
+        list[a].postData.created - 
+        list[b].postData.created
         )
+        setListKeys(newestKeys)
+    } 
+    const handleSelectMostLiked = (e) => {
+        handleSelectFilter(e)
+
+    }
+    const handleSelectAward = (e) => {
+        handleSelectFilter(e)
+
+    }
+    const handleSelectFlaired = (e) => {
+        handleSelectFilter(e)
+
+    }
+    const handleSelectVideos = (e) => {
+        handleSelectFilter(e)
+
+    }
+    const handleSelectImages = (e) => {
+        handleSelectFilter(e)
+
+    }
+    const handleSelectText = (e) => {
+        handleSelectFilter(e)
+        const textKeys = listKeys.filter(key => 
+            list[key].postData.selftext
+            )
+        setListKeys(textKeys)
     }
     return (
         <>
@@ -41,17 +77,17 @@ export const RedditPostsList = ({ list }) => {
             spacing={10}
             >
             <Grid2 container item wrap='wrap' margin='auto'>
-                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#05d7a0')}>newest</span>
-                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f0466e')}>most liked</span>
-                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#ffd264')}>awards</span>
-                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
-                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#f5a05f')}>videos</span>
-                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#6e5a7d')}>images</span>
-                <span onClick={handleSelectFilter} className="hover" style={filterStyle('#053c4b')}>text</span>
+                <span onClick={handleSelectNewest} className="hover" style={filterStyle('#05d7a0')}>newest</span>
+                <span onClick={handleSelectMostLiked} className="hover" style={filterStyle('#f0466e')}>most liked</span>
+                <span onClick={handleSelectAward} className="hover" style={filterStyle('#ffd264')}>awards</span>
+                <span onClick={handleSelectFlaired} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
+                <span onClick={handleSelectVideos} className="hover" style={filterStyle('#f5a05f')}>videos</span>
+                <span onClick={handleSelectImages} className="hover" style={filterStyle('#6e5a7d')}>images</span>
+                <span onClick={handleSelectText} className="hover" style={filterStyle('#053c4b')}>text</span>
             </Grid2>
                 {
-                //get object keys and iterate each key to index object
-                Object.keys(list).map((id, index) => {
+                //iterate each key to get post object
+                listKeys.map((id, index) => {
                     const data = list[id]
                     return (
                         <Grid2 key={index} item 
