@@ -9,13 +9,11 @@ export const HomePage = () => {
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
     //handles logic of whether user or client homepage should be fetched
-    const homepageParams = '.json?sort=new'
-    const args = [currentToken, homepageParams]
     useMemo(() => {
 
         if(currentToken) {
             //populates postsLists used by RedditPostsList component
-            dispatch(fetchPosts(args))
+            dispatch(fetchPosts('.json?sort=new'))
         }
     }, [])
     const postsListStatus = useSelector(selectPostsListStatus)

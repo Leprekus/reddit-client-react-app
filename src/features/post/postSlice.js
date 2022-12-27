@@ -14,14 +14,13 @@ const initialState = {
 
 export const fetchPosts = createAsyncThunk(
     'posts/fetchNewPosts',
-    async (args) => {
-      const [token, params] = args
+    async (params, thunkAPi) => {
+      const currentToken = selectCurrentToken(thunkAPi.getState())
         try {
-          console.log(token)
           const options = {
             method: 'GET',
             headers: {
-                Authorization: `bearer ${token.access_token}` ,
+                Authorization: `bearer ${currentToken.access_token}` ,
             },
         }
           const response = await fetch(`https://oauth.reddit.com/${params}`, options)
