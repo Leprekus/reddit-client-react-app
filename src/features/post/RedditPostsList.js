@@ -20,18 +20,24 @@ export const RedditPostsList = ({ list }) => {
             
         }
     }
+    const resetKeys = () => {
+        const defaultKeys = Object.keys(list)
+        setListKeys(defaultKeys)
+    }
     const handleSelectFilter = ({ target }) => {
         if(target.style.color === 'rgb(255, 255, 255)') {
-            return (
-                target.style.color = target.style.borderColor,
-                target.style.backgroundColor = 'transparent'
-                )
+            //unselected filter
+            target.style.color = target.style.borderColor
+            target.style.backgroundColor = 'transparent'
+            return false
+            } 
+        else {
+            //selected filter
+            target.style.backgroundColor = target.style.borderColor
+            target.style.color = '#FFF'
+            return true
             }
-            return (
-                target.style.backgroundColor = target.style.borderColor, 
-                target.style.color = '#FFF'
-                )
-            }
+        }
     const handleSelectNewest = (e) => {
         handleSelectFilter(e)
         const newestKeys = listKeys.sort((a, b) => 
@@ -61,11 +67,15 @@ export const RedditPostsList = ({ list }) => {
 
     }
     const handleSelectText = (e) => {
-        handleSelectFilter(e)
-        const textKeys = listKeys.filter(key => 
-            list[key].postData.selftext
-            )
-        setListKeys(textKeys)
+        const isSelected = handleSelectFilter(e)
+        if(isSelected) {
+            const textKeys = listKeys.filter(key => list[key].postData.selftext)
+            setListKeys(textKeys)
+        }
+        else {
+            console.log('called')
+            resetKeys()
+        }
     }
     return (
         <>
