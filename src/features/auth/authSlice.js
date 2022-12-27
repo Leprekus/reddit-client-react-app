@@ -54,6 +54,8 @@ export const fetchClientToken = (code) => (dispatch, getState) => {
     request.onreadystatechange = function () {
         if (request.readyState === 4) {
             const response = JSON.parse(request.responseText)
+            const date = new Date()
+            response.expires_in = date.setSeconds(date.getSeconds() + response.expires_in)
             return response.access_token ? dispatch(setCredentials(response)) : ''
             }
         };
