@@ -5,6 +5,7 @@ import { HomePage } from './routes/HomePage';
 import { LoginPage } from './routes/LoginPage';
 import { Search } from './routes/Search';
 export const router = createBrowserRouter([
+  //change format to carousel 
     {
       path: '/',
       element: <Root/>,
@@ -17,7 +18,7 @@ export const router = createBrowserRouter([
         {
           path: '/search',
           element: <Search/>,
-        }
+        },
       ]
   
     },

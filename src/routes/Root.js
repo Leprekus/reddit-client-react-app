@@ -43,7 +43,7 @@ export const Root = () => {
                 endAdornment: <IconButton onClick={handleFetchQuery} component={Link} to='search'><Search/></IconButton>
             }}
             />
-            <Button  component={Link} variant='outline' to='homepage'>Trending</Button>
+            <Button  component={Link} variant='outline' to='trending'>Trending</Button>
             <Button  component={Link} variant='outline' to='homepage'>Notifications</Button>
             <Button  component={Link} variant='outline' to={login === 'Login' ? '/login' : ''} onClick={handleToggleLogin}>{login}</Button>:
         </Grid2>

@@ -6,10 +6,8 @@ import { redditPosts } from "../../mocks/responseData";
 import { selectCurrentToken } from "../auth/authSlice";
 const initialState = {
   postsList: {},
-  searchResults: [],
   status: 'idle',
   commentStatus: 'idle',
-  searchResultStatus: 'idle'
 }
 
 export const fetchPosts = createAsyncThunk(
@@ -59,34 +57,6 @@ export const fetchPosts = createAsyncThunk(
       } catch( e ) { console.error(e)}
     }
   );  
-  export const fetchData = createAsyncThunk(
-    'posts/fetchQuery',
-    async(searchField, thunkAPi) => {
-      const currentToken = selectCurrentToken(thunkAPi.getState())
-      try {
-        const parameters = new URLSearchParams(searchField)
-        const  res = await fetch(`https://oauth.reddit.com/search.json?q=${parameters}`, {
-          method: 'GET',
-          headers: {
-              Authorization: `bearer ${currentToken.access_token}` ,
-            }
-        })
-        const resJSON = await res.json()
-        const updatedSearchResults = {}
-        resJSON.data.children.forEach(res =>( 
-          updatedSearchResults[res.data.id] = {
-            id: res.data.id,
-            postData: res.data,
-            comments: [],
-            displayComments: false
-
-            }
-          ))
-        return updatedSearchResults
-
-      } catch(e) { console.log(e) }
-    }
-  )
 export const postSlice = createSlice({
     name: 'posts',
     initialState,
@@ -121,17 +91,6 @@ export const postSlice = createSlice({
           state.commentStatus = 'rejected';
           state.commentsList = Error('Could not fetch posts');
         })        
-        .addCase(fetchData.pending, (state, action) => {
-          state.searchResultStatus = 'loading';
-        })
-        .addCase(fetchData.fulfilled, (state, action) => {
-          state.searchResultStatus = 'fulfilled';
-          state.searchResults = action.payload
-        })
-        .addCase(fetchData.rejected, (state, action) => {
-          state.searchResultStatus = 'rejected';
-        })
-
     },
   });
 
@@ -139,8 +98,6 @@ export const { toggleDisplayComments } = postSlice.actions;
 export const selectPostsListStatus = (state) => state.posts.status;
 export const selectPostsLists = ({ posts }) => posts.postsList;
 export const selectCommentsListsStatus = (state) => state.posts.commentStatus;
-export const selectSearchResultStatus = (state) => state.posts.searchResultStatus;
-export const selectSearchResults = (state) => state.posts.searchResults
 export default postSlice.reducer;
 
 
