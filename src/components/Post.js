@@ -75,7 +75,8 @@ export const Post = ({ data }) => {
         </Carousel>
         }
         { //handle link posts  
-        data.post_hint === 'link' &&
+         //checks for t3 prefix which indicates thing is a post
+        data.name.slice('_').includes('t3') &&
         <>
         <CardMedia 
         loading='lazy'
