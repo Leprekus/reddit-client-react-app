@@ -5,10 +5,12 @@ import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchComments, fetchPosts } from "../features/post/postSlice"
 import { selectCurrentToken } from "../features/auth/authSlice"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 export const Post = ({ data }) => {
   const dispatch = useDispatch()
+  const { subreddit } = useParams()
+  console.log(subreddit)
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
   const currentToken = useSelector(selectCurrentToken)
@@ -110,7 +112,7 @@ export const Post = ({ data }) => {
             sx={{ margin: '0 1rem'}}
             aria-label="subreddit"
             component={Link}
-            to={`${data.subreddit_name_prefixed}`}
+            to={subreddit === data.subreddit ? null : `${data.subreddit_name_prefixed}`}
             onClick={handleFetchSubreddit}
             >
             {`${data.subreddit_name_prefixed}`}</Button>

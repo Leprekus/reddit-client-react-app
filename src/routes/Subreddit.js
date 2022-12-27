@@ -5,7 +5,7 @@ import { RedditPostsList } from "../features/post/RedditPostsList"
 export const Subreddit = () => {
     const postsListStatus = useSelector(selectPostsListStatus)
     const postsList = useSelector(selectPostsLists)
-    console.log(postsList)
+    
     return (
         <>
         {

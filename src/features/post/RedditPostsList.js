@@ -40,11 +40,13 @@ export const RedditPostsList = ({ list }) => {
             }
         }
     const selectNewestPosts = (e) => {
-        const newestKeys = listKeys.sort((a, b) => 
+        const newestKeys = listKeys
+        .sort((a, b) => 
         list[a].postData.created - 
-        list[b].postData.created
-        )
-        setListKeys(newestKeys)
+        list[b].postData.created)
+        
+        return newestKeys
+
     } 
     const selectMostLikedPosts = (e) => {
 
