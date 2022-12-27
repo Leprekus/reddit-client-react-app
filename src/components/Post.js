@@ -1,7 +1,7 @@
-import { ArrowDownward, ArrowUpward, InsertComment, OpenInNew } from "@mui/icons-material"
-import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton } from "@mui/material"
+import { ArrowDownward, ArrowUpward, EmojiEvents, InsertComment, OpenInNew } from "@mui/icons-material"
+import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Tooltip } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchComments, fetchPosts } from "../features/post/postSlice"
 import { selectCurrentToken } from "../features/auth/authSlice"
@@ -13,6 +13,7 @@ export const Post = ({ data }) => {
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
   const currentToken = useSelector(selectCurrentToken)
+  const awardContainerRef = useRef(null)
   useMemo(() => {
     if(expanded) setViewPostButton('show less')
     if(!expanded) setViewPostButton('show more')
@@ -25,6 +26,12 @@ export const Post = ({ data }) => {
   }
   const handleFetchSubreddit = () => {
     dispatch(fetchPosts(`${data.subreddit_name_prefixed}`))
+  }
+  const handleToggleAwards = () => {
+    if(awardContainerRef.current.style.display === 'flex') {
+      return awardContainerRef.current.style.display = 'none'
+    }
+    return awardContainerRef.current.style.display = 'flex'
   }
     return (
         <>
@@ -115,9 +122,31 @@ export const Post = ({ data }) => {
             onClick={handleFetchSubreddit}
             >
             {`${data.subreddit_name_prefixed}`}</Button>
+            {
+            data.all_awardings.length > 0 &&
+            <IconButton 
+            edge='end'
+            size="medium"
+            onClick={handleToggleAwards}
+            >
+              <EmojiEvents/>
+            </IconButton>
+            }
         </CardActions>
-        
       </Card>    
+      <div className="award-container" ref={awardContainerRef}>
+        {
+          data.all_awardings.map(award => (
+            <Tooltip 
+            title={award.description}
+            arrow
+            placement="top"
+            >
+              <img src={award.icon_url} alt='award' className="award"/>
+            </Tooltip>)
+          )
+        }
+      </div>
         </>
     )
 }
