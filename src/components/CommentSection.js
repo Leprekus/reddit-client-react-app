@@ -8,7 +8,6 @@ import { Close } from "@mui/icons-material";
 export const CommentSection = ({ postId }) => {
     const dispatch = useDispatch()
     const commentsList = useSelector(selectPostsLists)[postId].comments
-    console.log(commentsList)
     const commentStatus = useSelector(selectCommentsListsStatus)
     const handleCloseCommentSection = () => {
         dispatch(toggleDisplayComments(postId))

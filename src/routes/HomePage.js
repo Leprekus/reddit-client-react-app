@@ -14,7 +14,7 @@ export const HomePage = () => {
     useMemo(() => {
 
         if(currentToken) {
-            //populates postsLists used by RedditPostsList c)omponent
+            //populates postsLists used by RedditPostsList component
             dispatch(fetchPosts(args))
         }
     }, [])

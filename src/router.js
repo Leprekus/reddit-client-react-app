@@ -3,7 +3,6 @@ import { Root } from './routes/Root';
 import ErrorPage from './ErrorPage';
 import { HomePage } from './routes/HomePage';
 import { LoginPage } from './routes/LoginPage';
-import { TestComponent } from './mocks/TestRequests';
 import { Search } from './routes/Search';
 export const router = createBrowserRouter([
     {

@@ -5,7 +5,7 @@ import { Link, Outlet } from "react-router-dom"
 import { logout, selectCurrentToken, fetchClientToken } from "../features/auth/authSlice"
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { Search } from "@mui/icons-material"
-import { fetchData } from "../features/post/postSlice"
+import { fetchData, fetchPosts } from "../features/post/postSlice"
 
 export const Root = () => {
     const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export const Root = () => {
         }
     }
     const handleFetchQuery = () => {
-        dispatch(fetchData(searchField))
+        dispatch(fetchPosts([currentToken, `search.json?q=${searchField}`]))
     }
     return (
     <main>

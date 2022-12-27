@@ -5,7 +5,6 @@ import { selectCommentsLists, selectPostsLists, selectPostsListStatus } from "./
 import { CommentSection } from  '../../components/CommentSection'
 
 export const RedditPostsList = ({ list }) => {
-    console.log(list)
     const filterStyle = (color) => {
         return {
             ':hover': {
@@ -51,6 +50,7 @@ export const RedditPostsList = ({ list }) => {
                 <span onClick={handleSelectFilter} className="hover" style={filterStyle('#053c4b')}>text</span>
             </Grid2>
                 {
+                //get object keys and iterate each key to index object
                 Object.keys(list).map((id, index) => {
                     const data = list[id]
                     return (
