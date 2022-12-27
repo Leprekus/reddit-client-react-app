@@ -66,14 +66,19 @@ export const RedditPostsList = ({ list }) => {
         handleSelectFilter(e)
 
     }
-    const handleSelectText = (e) => {
+    const selectTextPosts = () => {
+        const textKeys = listKeys
+        .filter(key => list[key].postData.selftext)
+        
+        return textKeys
+    }
+    const handleApplyFilter = (e, filter) => {
         const isSelected = handleSelectFilter(e)
         if(isSelected) {
-            const textKeys = listKeys.filter(key => list[key].postData.selftext)
-            setListKeys(textKeys)
+            const newKeys = filter()
+            setListKeys(newKeys)
         }
         else {
-            console.log('called')
             resetKeys()
         }
     }
@@ -93,7 +98,7 @@ export const RedditPostsList = ({ list }) => {
                 <span onClick={handleSelectFlaired} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
                 <span onClick={handleSelectVideos} className="hover" style={filterStyle('#f5a05f')}>videos</span>
                 <span onClick={handleSelectImages} className="hover" style={filterStyle('#6e5a7d')}>images</span>
-                <span onClick={handleSelectText} className="hover" style={filterStyle('#053c4b')}>text</span>
+                <span onClick={(e) => handleApplyFilter(e, selectTextPosts)} className="hover" style={filterStyle('#053c4b')}>text</span>
             </Grid2>
                 {
                 //iterate each key to get post object
