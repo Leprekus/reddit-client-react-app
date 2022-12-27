@@ -21,7 +21,9 @@ export const fetchPosts = createAsyncThunk(
                 Authorization: `bearer ${currentToken.access_token}` ,
             },
         }
-          const response = await fetch(`https://oauth.reddit.com/${params}`, options)
+          const url = new URL(`https://oauth.reddit.com/${params}`)
+          console.log(url)
+          const response = await fetch(url, options)
           const responseJSON = await response.json()
           const updatedPostsList = {}
           responseJSON.data.children.forEach(post => (
@@ -39,6 +41,7 @@ export const fetchPosts = createAsyncThunk(
           // return dummyPostsList
         } catch ( e ) {
           console.log(e)
+          return {}
         }
     }
   );

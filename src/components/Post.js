@@ -145,6 +145,7 @@ export const Post = ({ data }) => {
             title={award.description}
             arrow
             placement="top"
+            key={award.icon_url}
             >
               <img src={award.icon_url} alt='award' className="award"/>
             </Tooltip>)
