@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
-import { selectPostsListStatus, selectPostsLists } from "../features/post/postSlice"
+import { Post } from "../components/Post"
+import { selectSearchResultStatus, selectSearchResults, selectPostsListStatus, selectPostsLists } from "../features/post/postSlice"
 import { RedditPostsList } from "../features/post/RedditPostsList"
 
 export const Search = () => {

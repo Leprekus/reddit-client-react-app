@@ -4,7 +4,7 @@ import { CommentSection } from  '../../components/CommentSection'
 import { useState } from "react";
 
 export const RedditPostsList = ({ list }) => {
-    //get object keys
+                                            //get object keys
     const [listKeys, setListKeys] = useState(Object.keys(list))
     const filterStyle = (color) => {
         return {
@@ -20,11 +20,12 @@ export const RedditPostsList = ({ list }) => {
             
         }
     }
+    console.log(list)
     const resetKeys = () => {
         const defaultKeys = Object.keys(list)
         setListKeys(defaultKeys)
     }
-    const handleSelectFilter = ({ target }) => {
+    const toggleFilter = ({ target }) => {
         if(target.style.color === 'rgb(255, 255, 255)') {
             //unselected filter
             target.style.color = target.style.borderColor
@@ -38,43 +39,41 @@ export const RedditPostsList = ({ list }) => {
             return true
             }
         }
-    const handleSelectNewest = (e) => {
-        handleSelectFilter(e)
+    const selectNewestPosts = (e) => {
         const newestKeys = listKeys.sort((a, b) => 
         list[a].postData.created - 
         list[b].postData.created
         )
         setListKeys(newestKeys)
     } 
-    const handleSelectMostLiked = (e) => {
-        handleSelectFilter(e)
+    const selectMostLikedPosts = (e) => {
 
     }
-    const handleSelectAward = (e) => {
-        handleSelectFilter(e)
+    const selectAwardedPosts = (e) => {
 
     }
-    const handleSelectFlaired = (e) => {
-        handleSelectFilter(e)
+    const selectFlairedPosts = (e) => {
 
     }
-    const handleSelectVideos = (e) => {
-        handleSelectFilter(e)
+    const selectVideoPosts = (e) => {
 
     }
-    const handleSelectImages = (e) => {
-        handleSelectFilter(e)
+    const selectImagePosts = (e) => {
+        const imageKeys = listKeys
+        .filter(key => list[key].postData.post_hint === 'image' ||
+                       list[key].postData.media_metadata)
+                       
+        return imageKeys
 
     }
     const selectTextPosts = () => {
         const textKeys = listKeys
         .filter(key => list[key].postData.selftext)
-        
         return textKeys
     }
     const handleApplyFilter = (e, filter) => {
-        const isSelected = handleSelectFilter(e)
-        if(isSelected) {
+        const filterIsSelected = toggleFilter(e)
+        if(filterIsSelected) {
             const newKeys = filter()
             setListKeys(newKeys)
         }
@@ -92,12 +91,12 @@ export const RedditPostsList = ({ list }) => {
             spacing={10}
             >
             <Grid2 container item wrap='wrap' margin='auto'>
-                <span onClick={handleSelectNewest} className="hover" style={filterStyle('#05d7a0')}>newest</span>
-                <span onClick={handleSelectMostLiked} className="hover" style={filterStyle('#f0466e')}>most liked</span>
-                <span onClick={handleSelectAward} className="hover" style={filterStyle('#ffd264')}>awards</span>
-                <span onClick={handleSelectFlaired} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
-                <span onClick={handleSelectVideos} className="hover" style={filterStyle('#f5a05f')}>videos</span>
-                <span onClick={handleSelectImages} className="hover" style={filterStyle('#6e5a7d')}>images</span>
+                <span onClick={(e) => handleApplyFilter(e, selectNewestPosts)} className="hover" style={filterStyle('#05d7a0')}>newest</span>
+                <span onClick={(e) => handleApplyFilter(e, selectMostLikedPosts)} className="hover" style={filterStyle('#f0466e')}>most liked</span>
+                <span onClick={(e) => handleApplyFilter(e, selectAwardedPosts)} className="hover" style={filterStyle('#ffd264')}>awards</span>
+                <span onClick={(e) => handleApplyFilter(e, selectFlairedPosts)} className="hover" style={filterStyle('#0f8cb4')}>flaired</span>
+                <span onClick={(e) => handleApplyFilter(e, selectVideoPosts)} className="hover" style={filterStyle('#f5a05f')}>videos</span>
+                <span onClick={(e) => handleApplyFilter(e, selectImagePosts)} className="hover" style={filterStyle('#6e5a7d')}>images</span>
                 <span onClick={(e) => handleApplyFilter(e, selectTextPosts)} className="hover" style={filterStyle('#053c4b')}>text</span>
             </Grid2>
                 {
