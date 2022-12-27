@@ -4,6 +4,7 @@ import ErrorPage from './ErrorPage';
 import { HomePage } from './routes/HomePage';
 import { LoginPage } from './routes/LoginPage';
 import { Search } from './routes/Search';
+import { Subreddit } from './routes/Subreddit';
 export const router = createBrowserRouter([
   //change format to carousel 
     {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
         {
           path: '/search',
           element: <Search/>,
+        },
+        {
+          path: '/r/:subreddit',
+          element: <Subreddit/>,
         },
       ]
   
