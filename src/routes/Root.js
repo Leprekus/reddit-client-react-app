@@ -35,8 +35,7 @@ export const Root = () => {
     }
     return (
     <main>
-        <h1>I am the root</h1>
-        <Grid2 container columnGap={2}>
+        <Grid2 container columnGap={2} justifyContent='center'>
             <Button  component={Link} variant='outline' data-testid='home-page-button' to='/'>Home Page</Button>
             <TextField 
             placeholder="Search Reddit"
