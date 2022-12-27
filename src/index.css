@@ -71,3 +71,7 @@ code {
   height: auto;
   margin: 0 0.5rem;
 }
+.award:hover {
+  transition: 0.2s ease-in;
+  transform: scale(1.2);
+}
