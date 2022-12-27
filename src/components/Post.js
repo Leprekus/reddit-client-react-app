@@ -1,10 +1,11 @@
 import { ArrowDownward, ArrowUpward, InsertComment, OpenInNew } from "@mui/icons-material"
-import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Link } from "@mui/material"
+import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchComments } from "../features/post/postSlice"
+import { fetchComments, fetchPosts } from "../features/post/postSlice"
 import { selectCurrentToken } from "../features/auth/authSlice"
+import { Link } from "react-router-dom"
 
 export const Post = ({ data }) => {
   const dispatch = useDispatch()
@@ -20,6 +21,9 @@ export const Post = ({ data }) => {
   }
   const handleDisplayComments = (e) => {
     dispatch(fetchComments([currentToken, data.subreddit, data.id]))
+  }
+  const handleFetchSubreddit = () => {
+    dispatch(fetchPosts(`${data.subreddit_name_prefixed}`))
   }
     return (
         <>
@@ -103,8 +107,12 @@ export const Post = ({ data }) => {
           >{viewPostButton}</Button>}
           <Button 
             sx={{ margin: '0 1rem'}}
-            aria-label="subreddit">
-            {`r/${data.subreddit}`}</Button>
+            aria-label="subreddit"
+            component={Link}
+            to={`${data.subreddit_name_prefixed}`}
+            onClick={handleFetchSubreddit}
+            >
+            {`${data.subreddit_name_prefixed}`}</Button>
         </CardActions>
         
       </Card>    
