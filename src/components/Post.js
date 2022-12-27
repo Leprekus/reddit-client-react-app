@@ -43,6 +43,10 @@ export const Post = ({ data }) => {
         subheader={ `Posted by u/${data.author}` }
         subheaderTypographyProps={{ variant: 'h6' }}
         />
+        {
+          data.selftext.length > 0 && 
+          <p>tldr;</p>
+        }
         { //handle images 
         data.post_hint === 'image' &&
         <CardMedia
