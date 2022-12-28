@@ -1,10 +1,7 @@
-import { Button } from "@mui/material"
-import randomstring from "randomstring"
-import { useEffect, useMemo } from "react"
-import { fetchClientToken, fetchToken, selectCurrentRandomString, selectCurrentUser } from "../features/auth/authSlice"
+import { useMemo } from "react"
+import { fetchClientToken, selectCurrentRandomString, selectCurrentUser } from "../features/auth/authSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { Navigate, useNavigate } from "react-router-dom"
-import { current } from "@reduxjs/toolkit"
+import { useNavigate } from "react-router-dom"
 
 export const useLogin = () => {
     //useFetchToken(); handles login logic
@@ -22,7 +19,6 @@ export const useLogin = () => {
         if(currentRandomString && !currentUser) {
             //check that random string in url matches with stored string
             if(urlContainsCurrentRandomString){ 
-                console.log(urlContainsCurrentRandomString)
                 const code = new URL(window.location.href).searchParams.get('code')
                 //send post request and store token
                 dispatch(fetchClientToken(true, code))

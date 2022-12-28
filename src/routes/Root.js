@@ -23,10 +23,10 @@ export const Root = () => {
         if(!currentToken){ 
             dispatch(fetchClientToken()) 
         }
-        if(currentToken.expires_in < Date.now()) {
+        if(currentToken && currentToken.expires_in < Date.now()) {
             dispatch(fetchClientToken())
         }
-    }, [currentUser])
+    }, [currentUser, currentToken])
     
     const handleToggleLogin = () => {
         if(login === 'Login') {
