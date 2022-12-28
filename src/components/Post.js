@@ -88,7 +88,7 @@ export const Post = ({ data }) => {
         }
         { //handle link posts  
          //checks for t3 prefix which indicates thing is a post
-        data.name.split('_')[0] === 't3' &&
+        data.post_hint === 'link' &&
         <>
         <CardMedia 
         loading='lazy'
