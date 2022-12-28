@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    randomString: null,
+    randomString: localStorage.getItem('randomString'),
     token: localStorage.getItem('token'),
-    user: null,
+    user: localStorage.getItem('user'),
 }
 
 const authSlice = createSlice({
@@ -14,8 +14,15 @@ const authSlice = createSlice({
             localStorage.setItem('token', token)
             state.token = token
         },
+        setUser:(state, { payload }) => {
+            const user = JSON.stringify(payload)
+            localStorage.setItem('user', user)
+            state.user = user
+        },
         setRandomString: (state, { payload }) => {
-            state.randomString = payload
+            const randomString = JSON.stringify(payload)
+            localStorage.setItem('randomString', randomString)
+            state.randomString = randomString
         },
         logout: (state) => {
             localStorage.clear()
@@ -25,9 +32,8 @@ const authSlice = createSlice({
 })
 
 
-export const { setCredentials, setRandomString, logout } = authSlice.actions;
+export const { setCredentials, setUser, setRandomString, logout } = authSlice.actions;
 export const selectCurrentUser = (state) => state.auth.user
-
 export const selectCurrentRandomString = (state) => state.auth.randomString
 export const selectCurrentToken = (state) => JSON.parse(state.auth.token)
 export const fetchToken = (code) => (dispatch, getState) => {
@@ -44,10 +50,15 @@ export const fetchToken = (code) => (dispatch, getState) => {
             return response.access_token ? dispatch(setCredentials(response)) : ''
             }
         };
+
 }
-export const fetchClientToken = (code) => (dispatch, getState) => {
+export const fetchClientToken = (userAuth=false, code) => (dispatch, getState) => {
     var authorizationBasic = window.btoa(process.env.REACT_APP_REDDIT_ID + ':' + process.env.REACT_APP_REDDIT_SECRET);
-    const body = `grant_type=client_credentials`
+    const body = userAuth === true ? 
+    `grant_type=authorization_code&code=${code}&redirect_uri=${process.env.REACT_APP_URI}` :
+    `grant_type=client_credentials`
+    console.log('body')
+    console.log(body)
     var request = new XMLHttpRequest();
     request.open('POST', 'https://www.reddit.com/api/v1/access_token', true);
     request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
@@ -60,7 +71,10 @@ export const fetchClientToken = (code) => (dispatch, getState) => {
             const date = new Date()
             response.expires_in = date.setSeconds(date.getSeconds() + response.expires_in)
             return response.access_token ? dispatch(setCredentials(response)) : ''
-            }
-        };
+            }     
+        if(userAuth) {
+            dispatch(setUser(true))
+        }
+    };
 } 
 export default authSlice.reducer

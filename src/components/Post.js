@@ -5,7 +5,7 @@ import { useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchComments, fetchPosts } from "../features/post/postSlice"
 import { selectCurrentToken } from "../features/auth/authSlice"
-import { Link, Navigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export const Post = ({ data }) => {
   const dispatch = useDispatch()

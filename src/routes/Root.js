@@ -2,38 +2,43 @@ import { Button, IconButton, Input, InputAdornment, TextField } from "@mui/mater
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet } from "react-router-dom"
-import { logout, selectCurrentToken, fetchClientToken, selectCurrentUser } from "../features/auth/authSlice"
+import { logout, selectCurrentToken, fetchClientToken, selectCurrentUser, setRandomString } from "../features/auth/authSlice"
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { Search } from "@mui/icons-material"
 import { fetchPosts } from "../features/post/postSlice"
-
+import randomstring from "randomstring"
+import { useLogin } from "../hooks/LoginPage"
 export const Root = () => {
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
     const currentUser = useSelector(selectCurrentUser)
     const [searchField, setSearchField] = useState('')
     const [login, setLogin] = useState(() => {
-        return !currentUser ? 'Login' : 'Logout'
+        return currentUser ? 'Logout' : 'Login'
     })
     useMemo(() => {
+        if(currentUser) {
+            setLogin('Logout')
+        }
         if(!currentToken){ 
             dispatch(fetchClientToken()) 
         }
         if(currentToken.expires_in < Date.now()) {
             dispatch(fetchClientToken())
         }
-    }, [])
+    }, [currentUser])
     
     const handleToggleLogin = () => {
         if(login === 'Login') {
             setLogin('Logout')
-            
+            dispatch(setRandomString(randomstring.generate()))
         }
         if(login === 'Logout') {
             setLogin('Login')
             dispatch(logout())
         }
     }
+    useLogin()
     const handleFetchQuery = () => {
         dispatch(fetchPosts(`search.json?q=${searchField}`))
     }
@@ -51,7 +56,7 @@ export const Root = () => {
             />
             <Button  component={Link} variant='outline' to='trending'>Trending</Button>
             <Button  component={Link} variant='outline' to='homepage'>Notifications</Button>
-            <Button variant='outline' onClick={handleToggleLogin}>{login}</Button>:
+            <Button  component={Link} variant='outline' onClick={handleToggleLogin}>{login}</Button>:
         </Grid2>
         {currentToken ?
              <Outlet/>:
