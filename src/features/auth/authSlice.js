@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
     randomString: null,
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
+    user: null,
 }
 
 const authSlice = createSlice({
@@ -24,7 +25,9 @@ const authSlice = createSlice({
 })
 
 
-export const { setCredentials, setRandomString, logout } = authSlice.actions; 
+export const { setCredentials, setRandomString, logout } = authSlice.actions;
+export const selectCurrentUser = (state) => state.auth.user
+
 export const selectCurrentRandomString = (state) => state.auth.randomString
 export const selectCurrentToken = (state) => JSON.parse(state.auth.token)
 export const fetchToken = (code) => (dispatch, getState) => {

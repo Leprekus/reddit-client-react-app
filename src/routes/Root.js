@@ -2,7 +2,7 @@ import { Button, IconButton, Input, InputAdornment, TextField } from "@mui/mater
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet } from "react-router-dom"
-import { logout, selectCurrentToken, fetchClientToken } from "../features/auth/authSlice"
+import { logout, selectCurrentToken, fetchClientToken, selectCurrentUser } from "../features/auth/authSlice"
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { Search } from "@mui/icons-material"
 import { fetchPosts } from "../features/post/postSlice"
@@ -10,9 +10,10 @@ import { fetchPosts } from "../features/post/postSlice"
 export const Root = () => {
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
+    const currentUser = useSelector(selectCurrentUser)
     const [searchField, setSearchField] = useState('')
     const [login, setLogin] = useState(() => {
-        return !currentToken ? 'Login' : 'Logout'
+        return !currentUser ? 'Login' : 'Logout'
     })
     useMemo(() => {
         if(!currentToken){ 
@@ -24,7 +25,10 @@ export const Root = () => {
     }, [])
     
     const handleToggleLogin = () => {
-        if(login === 'Login') setLogin('Logout')
+        if(login === 'Login') {
+            setLogin('Logout')
+            
+        }
         if(login === 'Logout') {
             setLogin('Login')
             dispatch(logout())
@@ -47,7 +51,7 @@ export const Root = () => {
             />
             <Button  component={Link} variant='outline' to='trending'>Trending</Button>
             <Button  component={Link} variant='outline' to='homepage'>Notifications</Button>
-            <Button  component={Link} variant='outline' to={login === 'Login' ? '/login' : ''} onClick={handleToggleLogin}>{login}</Button>:
+            <Button variant='outline' onClick={handleToggleLogin}>{login}</Button>:
         </Grid2>
         {currentToken ?
              <Outlet/>:
