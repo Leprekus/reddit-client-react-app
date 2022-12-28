@@ -7,7 +7,7 @@ import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { Search } from "@mui/icons-material"
 import { fetchPosts } from "../features/post/postSlice"
 import randomstring from "randomstring"
-import { useLogin } from "../hooks/LoginPage"
+import { useLogin } from "../hooks/useLogin"
 export const Root = () => {
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
