@@ -13,6 +13,7 @@ export const Post = ({ data }) => {
   const [viewPostButton, setViewPostButton]  = useState('show more')
   const currentToken = useSelector(selectCurrentToken)
   const awardContainerRef = useRef(null)
+  console.log(data)
   useMemo(() => {
     if(expanded) setViewPostButton('show less')
     if(!expanded) setViewPostButton('show more')
@@ -31,6 +32,12 @@ export const Post = ({ data }) => {
       return awardContainerRef.current.style.display = 'none'
     }
     return awardContainerRef.current.style.display = 'flex'
+  }
+  const handleUpvote = () => {
+
+  }
+  const handleDownvote = () => {
+
   }
     return (
         <>
@@ -108,8 +115,8 @@ export const Post = ({ data }) => {
           </CardContent>
         </Collapse>
         <CardActions>
-          <IconButton aria-label="upvote"><ArrowUpward/></IconButton>
-          <IconButton aria-label="downvote"><ArrowDownward/></IconButton>
+          <IconButton color={data.likes === true ? 'primary' : ''} onClick={handleUpvote} aria-label="upvote"><ArrowUpward/></IconButton>
+          <IconButton color={data.likes === false ? 'primary' : ''} onClick={handleDownvote} aria-label="downvote"><ArrowDownward/></IconButton>
           <IconButton sx={{ borderRadius: '5px'}} aria-label="comments" onClick={handleDisplayComments}><InsertComment/></IconButton>
           {data.selftext?.length > 0 && 
           <Button

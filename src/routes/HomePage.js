@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, selectPostsListStatus, selectPostsLists } from "../features/post/postSlice";
 import { selectCurrentToken } from "../features/auth/authSlice";
 import { useMemo } from "react";
+import { LinearProgress } from "@mui/material";
 
 
 export const HomePage = () => {
@@ -21,12 +22,9 @@ export const HomePage = () => {
 
     return ( 
    <>
-        <h1>
-            Home Page rendered
-        </h1>
         {
             postsListStatus === 'loading' &&
-            <p>Loading...</p>
+            <LinearProgress/>
         }
         {
             postsListStatus === 'fulfilled' && 

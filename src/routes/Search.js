@@ -1,3 +1,4 @@
+import { LinearProgress } from "@mui/material"
 import { useSelector } from "react-redux"
 import { selectPostsListStatus, selectPostsLists } from "../features/post/postSlice"
 import { RedditPostsList } from "../features/post/RedditPostsList"
@@ -10,7 +11,7 @@ export const Search = () => {
         <>
         {
             postsListStatus === 'loading' && 
-            <p>Loading...</p>
+            <LinearProgress/>
         }
         {
             postsListStatus === 'fulfilled' &&

@@ -8,6 +8,7 @@ const initialState = {
   postsList: {},
   status: 'idle',
   commentStatus: 'idle',
+  voteStatus: 'idle'
 }
 
 export const fetchPosts = createAsyncThunk(
