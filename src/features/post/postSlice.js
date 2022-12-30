@@ -68,24 +68,26 @@ export const postVote = createAsyncThunk(
     const [id, value] = args;
     const token = selectCurrentToken(thunkApi.getState()).access_token;
     var headers = {
-      "authorization": "Bearer " + token.toString()
+      "authorization": "Bearer " + token.toString(),
+      'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
   };
   
-  var payload = {
+  var payload = new URLSearchParams({
       id: id,
       dir: value,
-  };
-  
+  });
   var options = {
       "method": "POST",
       "headers": headers,
-      "payload": JSON.stringify(payload),
+      "payload": payload.toString(),
       "muteHttpExceptions": true
   };
   
-  var url = "https://oauth.reddit.com/api/vote";
+  var url = "https://oauth.reddit.com/api/vote?" + payload;
   var response = await fetch(url, options);
   var data = await response.json()
+  console.log('data')
+  console.log(payload.toString())
    console.log(data)
 
   // var request = new XMLHttpRequest();

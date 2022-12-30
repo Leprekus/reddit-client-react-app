@@ -11,6 +11,9 @@ export const Post = ({ data }) => {
   const dispatch = useDispatch()
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
+  const [upvoteColor, setUpvoteColor] = useState('')
+  const [downvoteColor, setDownvoteColor] = useState('')
+  const [currentVote, setCurrentVote] = useState(0)
   const currentToken = useSelector(selectCurrentToken)
   const awardContainerRef = useRef(null)
   console.log(data)
@@ -34,8 +37,34 @@ export const Post = ({ data }) => {
     return awardContainerRef.current.style.display = 'flex'
   }
   const handleVote = (value) => {
-    //needs id & value
-    dispatch(postVote([data.name, value]))
+    //changes downvote to upvote & viceversa
+    if(value + currentVote === 0) {
+      setCurrentVote(value)
+      return value > 0 ? 
+      (setUpvoteColor('primary'),
+      setDownvoteColor(''),
+      dispatch(postVote([data.name, value])))
+      : 
+      (setDownvoteColor('primary'),
+      setUpvoteColor(''),
+      dispatch(postVote([data.name, value]))
+      )
+    }
+    //resets vote
+    if(currentVote !== 0) {
+      setCurrentVote(0)
+      setUpvoteColor('')
+      setDownvoteColor('')
+      console.log(currentVote)
+      return dispatch(postVote([data.name, 0]))
+       
+    }
+    //dispatches normal vote (when currentVote === 0)
+    value > 0 ? setUpvoteColor('primary') : setDownvoteColor('primary')    
+    setCurrentVote(value)
+    console.log(currentVote)
+    return dispatch(postVote([data.name, value]))
+    
   }
     return (
         <>
@@ -113,8 +142,8 @@ export const Post = ({ data }) => {
           </CardContent>
         </Collapse>
         <CardActions>
-          <IconButton color={data.likes === true ? 'primary' : ''} onClick={() => handleVote(1)} aria-label="upvote"><ArrowUpward/></IconButton>
-          <IconButton color={data.likes === false ? 'primary' : ''} onClick={() => handleVote(-1)} aria-label="downvote"><ArrowDownward/></IconButton>
+          <IconButton color={upvoteColor} onClick={() => handleVote(1)} aria-label="upvote"><ArrowUpward/></IconButton>
+          <IconButton color={downvoteColor} onClick={() => handleVote(-1)} aria-label="downvote"><ArrowDownward/></IconButton>
           <IconButton sx={{ borderRadius: '5px'}} aria-label="comments" onClick={handleDisplayComments}><InsertComment/></IconButton>
           {data.selftext?.length > 0 && 
           <Button
