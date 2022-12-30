@@ -8,7 +8,7 @@ const initialState = {
   postsList: {},
   status: 'idle',
   commentStatus: 'idle',
-  voteStatus: 'idle'
+  voteStatus: 'idle',
 }
 
 export const fetchPosts = createAsyncThunk(
@@ -61,6 +61,51 @@ export const fetchPosts = createAsyncThunk(
       } catch( e ) { console.error(e)}
     }
   );  
+
+export const postVote = createAsyncThunk(
+  'posts/handleVote',
+  async(args, thunkApi) => {
+    const [id, value] = args;
+    const token = selectCurrentToken(thunkApi.getState()).access_token;
+    var headers = {
+      "authorization": "Bearer " + token.toString()
+  };
+  
+  var payload = {
+      id: id,
+      dir: value,
+  };
+  
+  var options = {
+      "method": "POST",
+      "headers": headers,
+      "payload": JSON.stringify(payload),
+      "muteHttpExceptions": true
+  };
+  
+  var url = "https://oauth.reddit.com/api/vote";
+  var response = await fetch(url, options);
+  var data = await response.json()
+   console.log(data)
+
+  // var request = new XMLHttpRequest();
+  // request.open('POST', 'https://oauth.reddit.com/api/vote', true);
+  // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+  // request.setRequestHeader('Authorization', 'Basic ' + token);
+  // //request.setRequestHeader('access-Control-Allow-Origin', 'null');
+  // request.setRequestHeader('Accept', '*/*');
+  // request.setRequestHeader('Origin', 'http://localhost:3000/');
+  // request.send(JSON.stringify(payload));
+  // request.onreadystatechange = function () {
+  //     if (request.readyState === 4) {
+  //         const response = JSON.parse(request.responseText)
+  //         console.log('response')
+  //         console.log(response)
+  //         }
+  //     };
+
+  }
+)
 export const postSlice = createSlice({
     name: 'posts',
     initialState,
@@ -94,6 +139,15 @@ export const postSlice = createSlice({
         .addCase(fetchComments.rejected, (state, action) => {
           state.commentStatus = 'rejected';
           state.commentsList = Error('Could not fetch posts');
+        })        
+        .addCase(postVote.pending, (state, action) => {
+          state.voteStatus = 'loading';
+        })
+        .addCase(postVote.fulfilled, (state, action) => {
+          state.voteStatus = 'fulfilled';
+        })
+        .addCase(postVote.rejected, (state, action) => {
+          state.voteStatus = 'rejected';
         })        
     },
   });

@@ -3,7 +3,7 @@ import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchComments, fetchPosts } from "../features/post/postSlice"
+import { fetchComments, fetchPosts, postVote } from "../features/post/postSlice"
 import { selectCurrentToken } from "../features/auth/authSlice"
 import { Link } from "react-router-dom"
 
@@ -33,11 +33,9 @@ export const Post = ({ data }) => {
     }
     return awardContainerRef.current.style.display = 'flex'
   }
-  const handleUpvote = () => {
-
-  }
-  const handleDownvote = () => {
-
+  const handleVote = (value) => {
+    //needs id & value
+    dispatch(postVote([data.name, value]))
   }
     return (
         <>
@@ -115,8 +113,8 @@ export const Post = ({ data }) => {
           </CardContent>
         </Collapse>
         <CardActions>
-          <IconButton color={data.likes === true ? 'primary' : ''} onClick={handleUpvote} aria-label="upvote"><ArrowUpward/></IconButton>
-          <IconButton color={data.likes === false ? 'primary' : ''} onClick={handleDownvote} aria-label="downvote"><ArrowDownward/></IconButton>
+          <IconButton color={data.likes === true ? 'primary' : ''} onClick={() => handleVote(1)} aria-label="upvote"><ArrowUpward/></IconButton>
+          <IconButton color={data.likes === false ? 'primary' : ''} onClick={() => handleVote(-1)} aria-label="downvote"><ArrowDownward/></IconButton>
           <IconButton sx={{ borderRadius: '5px'}} aria-label="comments" onClick={handleDisplayComments}><InsertComment/></IconButton>
           {data.selftext?.length > 0 && 
           <Button
