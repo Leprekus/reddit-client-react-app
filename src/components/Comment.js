@@ -6,7 +6,7 @@ import { selectCommentsListsStatus } from "../features/post/postSlice"
 
 export const Comment = ({ data }) => {
     return (
-        <Card>   
+        <Card aria-label='comment'>   
             <CardHeader
             title={data.author}
             titleTypographyProps={{ variant: 'p'}}

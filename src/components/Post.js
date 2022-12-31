@@ -68,7 +68,7 @@ export const Post = ({ data }) => {
   }
     return (
         <>
-      <Card>
+      <Card data-test-id='post'>
         <CardHeader
         id={data.id}
         titleTypographyProps={{ variant: 'h5', margin: '0.4rem 0' }}
@@ -144,7 +144,7 @@ export const Post = ({ data }) => {
         <CardActions>
           <IconButton color={upvoteColor} onClick={() => handleVote(1)} aria-label="upvote"><ArrowUpward/></IconButton>
           <IconButton color={downvoteColor} onClick={() => handleVote(-1)} aria-label="downvote"><ArrowDownward/></IconButton>
-          <IconButton sx={{ borderRadius: '5px'}} aria-label="comments" onClick={handleDisplayComments}><InsertComment/></IconButton>
+          <IconButton sx={{ borderRadius: '5px'}} aria-label="display-comments-button" onClick={handleDisplayComments}><InsertComment/></IconButton>
           {data.selftext?.length > 0 && 
           <Button
           onClick={handleExpandClick}
@@ -164,6 +164,7 @@ export const Post = ({ data }) => {
             <IconButton 
             edge='end'
             size="medium"
+            aria-label='awards'
             onClick={handleToggleAwards}
             >
               <EmojiEvents/>
