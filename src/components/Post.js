@@ -88,6 +88,10 @@ export const Post = ({ data }) => {
         loading='lazy'
         />
         }
+        { //handle videos 
+        data.is_video &&
+        <video controls src="https://v.redd.it/hvhcszmdkh8a1/HLSPlaylist.m3u8?a=1675113056%2CNjMwMjM5MWM4NWRlNzBmMDNlN2U1MjhhYzE2YmE3NTk2YzYxZmNmOTBlNTFlYjJiNGVhNjEzZTFjOTU4ZjI1YQ%3D%3D&v=1&f=sd"/>
+        }
         { //handle galleries
         data.is_gallery === true && 
         <Carousel 

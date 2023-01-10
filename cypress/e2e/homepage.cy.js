@@ -23,4 +23,31 @@ describe('Homepage', () => {
     .invoke('getPropertyValue', 'display')
     .should('equal', 'flex')
     })
+
+    it('displays most liked posts', () => {
+      cy.get(['test-label-id="most-liked-filter"'])
+    })
+    it('displays awarded posts', () => {
+      cy.get(['test-label-id="awards-filter"'])
+    })
+    it('displays flaired', () => {
+      cy.get(['test-label-id="flaired-filter"'])
+
+    })
+    it('displays link posts', () => {
+      cy.get(['test-label-id="links-filter"'])
+
+    })
+    it('displays video posts', () => {
+      cy.get(['test-label-id="videos-filter"'])
+
+    })
+    it('displays image posts', () => {
+      cy.get(['test-label-id="images-filter"'])
+
+    })
+    it('displays text posts', () => {
+      cy.get(['test-label-id="text-filter"'])
+
+    })
 })
