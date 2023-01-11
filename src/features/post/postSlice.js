@@ -9,6 +9,11 @@ const initialState = {
   status: 'idle',
   commentStatus: 'idle',
   voteStatus: 'idle',
+  displayAlert: false, 
+  alertProps: {
+    type: '',
+    text: ''
+  }
 }
 
 export const fetchPosts = createAsyncThunk(
@@ -108,6 +113,20 @@ export const postVote = createAsyncThunk(
 
   }
 )
+
+export const showAlert = (payload) => (dispatch, getState) => {
+  const displayAlert = selectDisplayAlert(getState())
+  if(displayAlert) return 
+  //on
+  dispatch(toggleAlert())
+  //type & text
+  dispatch(setAlertProps(payload))
+  setTimeout(() => {
+      //off
+      dispatch(toggleAlert())
+  }, 3000)
+
+}
 export const postSlice = createSlice({
     name: 'posts',
     initialState,
@@ -116,6 +135,14 @@ export const postSlice = createSlice({
         const id = action.payload
         state.postsList[id].displayComments = !state.postsList[id].displayComments
       },
+      toggleAlert: (state, action) => {
+        state.displayAlert = !state.displayAlert
+      },
+      setAlertProps: (state, action) => {
+        const [type, text] = action.payload
+        state.alertProps.type = type
+        state.alertProps.text = text
+      }
     },
     extraReducers: (builder) => {
       builder
@@ -154,10 +181,12 @@ export const postSlice = createSlice({
     },
   });
 
-export const { toggleDisplayComments } = postSlice.actions;
+export const { toggleDisplayComments, toggleAlert, setAlertProps } = postSlice.actions;
 export const selectPostsListStatus = (state) => state.posts.status;
 export const selectPostsLists = ({ posts }) => posts.postsList;
 export const selectCommentsListsStatus = (state) => state.posts.commentStatus;
+export const selectDisplayAlert = (state) => state.posts.displayAlert
+export const selectAlertProps = (state) => state.posts.alertProps
 export default postSlice.reducer;
 
 

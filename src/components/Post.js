@@ -1,14 +1,18 @@
 import { ArrowDownward, ArrowUpward, EmojiEvents, InsertComment, OpenInNew } from "@mui/icons-material"
-import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Tooltip } from "@mui/material"
+import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Tooltip, Alert } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchComments, fetchPosts, postVote } from "../features/post/postSlice"
-import { selectCurrentToken } from "../features/auth/authSlice"
+import { fetchComments, fetchPosts, postVote, selectAlertProps, selectDisplayAlert, showAlert } from "../features/post/postSlice"
+import { selectCurrentToken, selectCurrentUser } from "../features/auth/authSlice"
 import { Link } from "react-router-dom"
 
 export const Post = ({ data }) => {
   const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
+  const displayAlert = useSelector(selectDisplayAlert)
+  const alertProps = useSelector(selectAlertProps)
+  const { type, text } = alertProps
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
   const [upvoteColor, setUpvoteColor] = useState('')
@@ -16,7 +20,6 @@ export const Post = ({ data }) => {
   const [currentVote, setCurrentVote] = useState(0)
   const currentToken = useSelector(selectCurrentToken)
   const awardContainerRef = useRef(null)
-  console.log(data)
   useMemo(() => {
     if(expanded) setViewPostButton('show less')
     if(!expanded) setViewPostButton('show more')
@@ -37,6 +40,7 @@ export const Post = ({ data }) => {
     return awardContainerRef.current.style.display = 'flex'
   }
   const handleVote = (value) => {
+    if(!currentUser) return dispatch(showAlert(['info', 'you must be signed in to perform this action']))
     //changes downvote to upvote & viceversa
     if(value + currentVote === 0) {
       setCurrentVote(value)
@@ -190,6 +194,8 @@ export const Post = ({ data }) => {
           )
         }
       </div>
+        {displayAlert && 
+        <Alert severity={type} sx={{ position: 'absolute'}}>{ text }</Alert>}
         </>
     )
 }
