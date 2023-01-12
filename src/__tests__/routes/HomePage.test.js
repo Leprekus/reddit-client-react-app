@@ -1,11 +1,13 @@
 import { AuthProvider, useAuth } from '../../hooks/useAuth';
 import { Routes, Route, MemoryRouter } from 'react-router-dom'
 import { HomeLayout } from '../../components/HomeLayout';
-import { prettyDOM, render, screen } from '@testing-library/react';
+import { prettyDOM, render, screen, waitFor } from '@testing-library/react';
 import { debug } from '@testing-library/jest-dom'
 import { ProtectedLayout } from '../../components/ProtectedLayout';
 import { HomePage } from '../../routes/HomePage';
 import { Root } from '../../routes/Root';
+import { Provider } from 'react-redux';
+import { store } from '../../app/store'
 describe('HomePage Component', () => {
 
     it('should render homePage', async () => {
@@ -17,12 +19,14 @@ describe('HomePage Component', () => {
         //     "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
         // }))
         render(      
-                <MemoryRouter initialEntries={['/homepage']}>
-                    <Routes>
-                        <Route path ='/' element={<Root/>}/>
-                        <Route path ='/homepage' element={<HomePage/>}/>
-                    </Routes>
-                </MemoryRouter>
+                <Provider store={store}>
+                    <MemoryRouter initialEntries={['/homepage']}>
+                        <Routes>
+                            <Route path ='/' element={<Root/>}/>
+                            <Route path ='/homepage' element={<HomePage/>}/>
+                        </Routes>
+                    </MemoryRouter>
+                </Provider>
                 , 
         )
         expect(screen.getByText(/home page rendered/i)).toBeInTheDocument();
@@ -33,7 +37,8 @@ describe('HomePage Component', () => {
             "token_type": "bearer",
             "expires_in": 86400,
             "refresh_token": "62260682-SFEomouZO7HMfko7QHA8mf72fMYBNQ",
-            "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history"
+            "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history",
+            "isExpired": false
         }))
         render(      
                 <MemoryRouter initialEntries={['/homepage']}>
@@ -46,6 +51,9 @@ describe('HomePage Component', () => {
             
         )
         //not rendering HomePage component because it is a shallow render
-        expect(screen.getByText(/home page/i)).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText(/home page/i)).toBeInTheDocument();
+
+        } )
     })
 })

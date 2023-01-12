@@ -2,31 +2,29 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Root } from './routes/Root';
 import ErrorPage from './ErrorPage';
 import { HomePage } from './routes/HomePage';
-import { ProtectedLayout } from './components/ProtectedLayout';
-import { LoginPage } from './routes/LoginPage';
-import { AuthProvider } from './hooks/useAuth';
-import { HomeLayout } from './components/HomeLayout';
+import { Search } from './routes/Search';
+import { Subreddit } from './routes/Subreddit';
+import { HomeLayout} from './components/HomeLayout'
 export const router = createBrowserRouter([
+  //change format to carousel 
     {
       path: '/',
-      element: 
-      <AuthProvider>
-        <ProtectedLayout/>
-      </AuthProvider>,
+      element: <Root/>,
       errorElement: <ErrorPage/>,
       children: [
         {
-          path: 'homepage',
+          path: '/',
           element: <HomePage/>
-        }
+        },
+        {
+          path: '/search',
+          element: <Search/>,
+        },
+        {
+          path: '/r/:subreddit',
+          element: <Subreddit/>,
+        },
       ]
-  
     },
-    {
-      path: '/login',
-      element: 
-      <AuthProvider>
-        <HomeLayout/>
-      </AuthProvider>
-    }
+   
   ])

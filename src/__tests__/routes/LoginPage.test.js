@@ -22,7 +22,7 @@ describe('LoginPage Component', () => {
 
     })
 
-    it('should render loginPage component is there is no token', async () => {
+    it('should render loginPage component if there is no token', async () => {
         render(      
                 <MemoryRouter initialEntries={['/homepage']}>
                     <Routes>
@@ -33,6 +33,28 @@ describe('LoginPage Component', () => {
                 </MemoryRouter>
             
         )
+        expect(screen.getByText(/login/i)).toBeInTheDocument();
+    })
+    it('should render loginPage if token is expired', async () => {
+        localStorage.setItem('token', JSON.stringify({
+            "access_token": "62260682-8MIBXe7vqBtK6sjRCKsbeHS5sRIyaA",
+            "token_type": "bearer",
+            "expires_in": 86400,
+            "refresh_token": "62260682-SFEomouZO7HMfko7QHA8mf72fMYBNQ",
+            "scope": "wikiedit save wikiread modwiki edit vote mysubreddits subscribe privatemessages modconfig read modlog modposts modflair report flair submit identity history",
+            "isExpired": true
+        }))
+        render(      
+                <MemoryRouter initialEntries={['/homepage']}>
+                    <Routes>
+                        <Route path ='/homepage' element={<AuthProvider><ProtectedLayout/></AuthProvider>}/>
+                        <Route path ='/login' element={<AuthProvider><HomeLayout/></AuthProvider>}/>
+                        {/* <Route path ='/homepage' element={<HomePage/>}/> */}
+                    </Routes>
+                </MemoryRouter>
+            
+        )
+        //not rendering HomePage component because it is a shallow render
         expect(screen.getByText(/login/i)).toBeInTheDocument();
     })
 

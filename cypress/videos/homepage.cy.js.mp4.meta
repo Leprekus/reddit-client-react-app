@@ -1,0 +1,51 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=-561
+END=2772
+title=Homepage renders posts
+[CHAPTER]
+TIMEBASE=1/1000
+START=1862
+END=6107
+title=Homepage loads comments
+[CHAPTER]
+TIMEBASE=1/1000
+START=7731
+END=10355
+title=Homepage displays awards
+[CHAPTER]
+TIMEBASE=1/1000
+START=12579
+END=12984
+title=Homepage displays most liked posts
+[CHAPTER]
+TIMEBASE=1/1000
+START=13089
+END=13392
+title=Homepage displays awarded posts
+[CHAPTER]
+TIMEBASE=1/1000
+START=13539
+END=13696
+title=Homepage displays flaired
+[CHAPTER]
+TIMEBASE=1/1000
+START=13701
+END=13854
+title=Homepage displays link posts
+[CHAPTER]
+TIMEBASE=1/1000
+START=13836
+END=14009
+title=Homepage displays video posts
+[CHAPTER]
+TIMEBASE=1/1000
+START=13992
+END=14184
+title=Homepage displays image posts
+[CHAPTER]
+TIMEBASE=1/1000
+START=14215
+END=14377
+title=Homepage displays text posts
