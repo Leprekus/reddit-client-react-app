@@ -1,5 +1,5 @@
 import { ArrowDownward, ArrowUpward, EmojiEvents, InsertComment, OpenInNew } from "@mui/icons-material"
-import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Tooltip, Alert } from "@mui/material"
+import { Button, Card, CardContent, CardHeader, CardMedia, CardActions, Collapse, Typography, IconButton, Tooltip } from "@mui/material"
 import Carousel from 'react-material-ui-carousel'
 import { useMemo, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -10,9 +10,6 @@ import { Link } from "react-router-dom"
 export const Post = ({ data }) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
-  const displayAlert = useSelector(selectDisplayAlert)
-  const alertProps = useSelector(selectAlertProps)
-  const { type, text } = alertProps
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
   const [upvoteColor, setUpvoteColor] = useState('')
@@ -194,8 +191,6 @@ export const Post = ({ data }) => {
           )
         }
       </div>
-        {displayAlert && 
-        <Alert severity={type} sx={{ position: 'absolute'}}>{ text }</Alert>}
         </>
     )
 }
