@@ -1,8 +1,8 @@
-import { UpdateDisabled } from "@mui/icons-material";
+import { ContactSupportOutlined, UpdateDisabled } from "@mui/icons-material";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import fetchCommentSection from "../../API/fetchCommentSection";
 import makeFetchRequest from "../../hooks/makeFetchRequest";
-import { redditPosts } from "../../mocks/responseData";
+import { mockRedditComments } from "../../mocks/responseData";
 import { selectCurrentToken } from "../auth/authSlice";
 const initialState = {
   postsList: {},
@@ -61,6 +61,7 @@ export const fetchPosts = createAsyncThunk(
         const response = await makeFetchRequest(token, commentsEndpoint);
         const updatedComments = response[1].data.children.map(comment => comment.data)
         // The value we return becomes the `fulfilled` action payload
+   
         thunkAPi.dispatch(toggleDisplayComments(id))
       return { id, updatedComments };
       } catch( e ) { console.error(e)}
