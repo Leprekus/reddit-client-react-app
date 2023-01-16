@@ -69,7 +69,7 @@ export const Root = () => {
              <h1>Loading...</h1>
         }
         <Fade in={displayAlert}>
-            <Alert severity={type} sx={{ position: 'fixed', top: 0, right: 0, transform: 'translate(-50%, 50%)'}}>{ text }</Alert>
+            <Alert severity={type} sx={{ position: 'fixed', top: 0, right: '50%', transform: 'translate(50%, 50%)'}}>{ text }</Alert>
         </Fade>
        
 
