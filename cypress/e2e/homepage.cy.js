@@ -22,13 +22,13 @@ describe('Homepage', () => {
     //   }
     // })
     cy.intercept('https://oauth.reddit.com/.json?sort=new', mockRedditPosts)
-    cy.intercept('GET', 'https://oauth.reddit.com/r/MadeMeSmile/comments/10csw70', mockRedditComments)
+    cy.intercept('GET', 'https://oauth.reddit.com/r/MadeMeSmile/comments/*', mockRedditComments)
     
   })
 
   it('renders posts', () => {
     cy.get('[data-test-id="post"]')
-    .should('have.length', 1)    
+    .should('have.length', 4)    
   })
 
   it('loads comments', () => {
@@ -48,7 +48,8 @@ describe('Homepage', () => {
     })
 
     it('displays most liked posts', () => {
-      cy.get(['test-label-id="most-liked-filter"'])
+      cy.get(['test-label-id="most-liked-filter"']).click()
+      
     })
     it('displays awarded posts', () => {
       cy.get(['test-label-id="awards-filter"'])

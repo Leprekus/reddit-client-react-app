@@ -42,7 +42,7 @@ export const mockRedditPosts = {
                     "link_flair_text_color": "dark",
                     "upvote_ratio": 0.95,
                     "author_flair_background_color": null,
-                    "ups": 16165,
+                    "ups": 1,
                     "total_awards_received": 3,
                     "media_embed": {},
                     "thumbnail_width": 140,
@@ -409,7 +409,7 @@ export const mockRedditPosts = {
                     "num_reports": null,
                     "removal_reason": null,
                     "link_flair_background_color": "#9be6dd",
-                    "id": "10csw70",
+                    "id": "10csw702",
                     "is_robot_indexable": true,
                     "report_reasons": null,
                     "author": "StarksTwins",
@@ -431,7 +431,537 @@ export const mockRedditPosts = {
                     "media": null,
                     "is_video": false
                 }
+            },
+            {
+                "kind": "t3",
+                "data": {
+                    "approved_at_utc": null,
+                    "subreddit": "MadeMeSmile",
+                    "selftext": "",
+                    "author_fullname": "t2_1yl6spp4",
+                    "saved": false,
+                    "mod_reason_title": null,
+                    "gilded": 0,
+                    "clicked": false,
+                    "title": "[OC] Had my facial reconstruction surgery 2 months ago. Was called Megamind, Ken Griffey Jr, Jimmy Nuetron, etc etc. 8 weeks later and feeling a lot more confident in how I look 😊",
+                    "link_flair_richtext": [
+                        {
+                            "a": ":jokerdance:",
+                            "e": "emoji",
+                            "u": "https://emoji.redditmedia.com/fgm153y7vn751_t5_2uqcm/jokerdance"
+                        },
+                        {
+                            "e": "text",
+                            "t": " Personal Win "
+                        },
+                        {
+                            "a": ":jokerdancemirror:",
+                            "e": "emoji",
+                            "u": "https://emoji.redditmedia.com/88tfe4mqun751_t5_2uqcm/jokerdancemirror"
+                        }
+                    ],
+                    "subreddit_name_prefixed": "r/MadeMeSmile",
+                    "hidden": false,
+                    "pwls": 6,
+                    "link_flair_css_class": "",
+                    "downs": 0,
+                    "thumbnail_height": 140,
+                    "top_awarded_type": null,
+                    "hide_score": false,
+                    "name": "t3_10csw70",
+                    "quarantine": false,
+                    "link_flair_text_color": "dark",
+                    "upvote_ratio": 0.95,
+                    "author_flair_background_color": null,
+                    "ups": 2,
+                    "total_awards_received": 3,
+                    "media_embed": {},
+                    "thumbnail_width": 140,
+                    "author_flair_template_id": null,
+                    "is_original_content": false,
+                    "user_reports": [],
+                    "secure_media": null,
+                    "is_reddit_media_domain": false,
+                    "is_meta": false,
+                    "category": null,
+                    "secure_media_embed": {},
+                    "link_flair_text": ":jokerdance: Personal Win :jokerdancemirror:",
+                    "can_mod_post": false,
+                    "score": 16165,
+                    "approved_by": null,
+                    "is_created_from_ads_ui": false,
+                    "author_premium": true,
+                    "thumbnail": "https://b.thumbs.redditmedia.com/ZQyOczmLbU-JB6pJ3FJMmQtAqRB4oMz_L2MbJPQpC6A.jpg",
+                    "edited": false,
+                    "author_flair_css_class": null,
+                    "author_flair_richtext": [],
+                    "gildings": {},
+                    "post_hint": "link",
+                    "content_categories": null,
+                    "is_self": false,
+                    "subreddit_type": "public",
+                    "created": 1673811922,
+                    "link_flair_type": "richtext",
+                    "wls": 6,
+                    "removed_by_category": null,
+                    "banned_by": null,
+                    "author_flair_type": "text",
+                    "domain": "i.imgur.com",
+                    "allow_live_comments": true,
+                    "selftext_html": null,
+                    "likes": null,
+                    "suggested_sort": null,
+                    "banned_at_utc": null,
+                    "url_overridden_by_dest": "https://i.imgur.com/jT2qxoB.jpg",
+                    "view_count": null,
+                    "archived": false,
+                    "no_follow": false,
+                    "is_crosspostable": false,
+                    "pinned": false,
+                    "over_18": false,
+                    "preview": {
+                        "images": [
+                            {
+                                "source": {
+                                    "url": "https://dummyimage.com/600x400/000/fff&text=Dummy+Image",
+                                    "width": 1936,
+                                    "height": 1936
+                                },
+                                "resolutions": [
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=6b14e0ca2f514fd206f981aa982ff4f8f1e140af",
+                                        "width": 108,
+                                        "height": 108
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=297ff019378b352a26a33cf9907a226011c1b35a",
+                                        "width": 216,
+                                        "height": 216
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=5479ae8598162ea41ebbf7d65f54f56bad8781cb",
+                                        "width": 320,
+                                        "height": 320
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=3aac16ee61d7075244d7df8eee29c67a385b34c4",
+                                        "width": 640,
+                                        "height": 640
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=a0c5eaa0e6147429dc85a1f22e4793920bda8759",
+                                        "width": 960,
+                                        "height": 960
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=4880cd5f51df789feb14d1f7c6fe5722cde4a148",
+                                        "width": 1080,
+                                        "height": 1080
+                                    }
+                                ],
+                                "variants": {},
+                                "id": "5NIcsbk1pO2F-gb0lAdeMG-zk72zrzDxgz2NS-D0rPI"
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    "all_awardings": [],
+                    "awarders": [],
+                    "media_only": false,
+                    "link_flair_template_id": "24179b60-b96e-11ea-8b62-0e4e0b1c1787",
+                    "can_gild": false,
+                    "spoiler": false,
+                    "locked": false,
+                    "author_flair_text": null,
+                    "treatment_tags": [],
+                    "visited": false,
+                    "removed_by": null,
+                    "mod_note": null,
+                    "distinguished": null,
+                    "subreddit_id": "t5_2uqcm",
+                    "author_is_blocked": false,
+                    "mod_reason_by": null,
+                    "num_reports": null,
+                    "removal_reason": null,
+                    "link_flair_background_color": "#9be6dd",
+                    "id": "10csw701",
+                    "is_robot_indexable": true,
+                    "report_reasons": null,
+                    "author": "StarksTwins",
+                    "discussion_type": null,
+                    "num_comments": 352,
+                    "send_replies": true,
+                    "whitelist_status": "all_ads",
+                    "contest_mode": false,
+                    "mod_reports": [],
+                    "author_patreon_flair": false,
+                    "author_flair_text_color": null,
+                    "permalink": "/r/MadeMeSmile/comments/10csw70/oc_had_my_facial_reconstruction_surgery_2_months/",
+                    "parent_whitelist_status": "all_ads",
+                    "stickied": false,
+                    "url": "https://dummyimage.com/600x400/000/fff&text=Dummy+Image",
+                    "subreddit_subscribers": 7078856,
+                    "created_utc": 1673811922,
+                    "num_crossposts": 0,
+                    "media": null,
+                    "is_video": false
+                }
+            },
+            {
+                "kind": "t3",
+                "data": {
+                    "approved_at_utc": null,
+                    "subreddit": "MadeMeSmile",
+                    "selftext": "[OC] Had my facial reconstruction surgery 2 months ago. Was called Megamind, Ken Griffey Jr, Jimmy Nuetron, etc etc. 8 weeks later and feeling a lot more confident in how I look 😊",
+                    "author_fullname": "t2_1yl6spp4",
+                    "saved": false,
+                    "mod_reason_title": null,
+                    "gilded": 0,
+                    "clicked": false,
+                    "title": "[OC] Had my facial reconstruction surgery 2 months ago. Was called Megamind, Ken Griffey Jr, Jimmy Nuetron, etc etc. 8 weeks later and feeling a lot more confident in how I look 😊",
+                    "link_flair_richtext": [
+                        {
+                            "a": ":jokerdance:",
+                            "e": "emoji",
+                            "u": "https://emoji.redditmedia.com/fgm153y7vn751_t5_2uqcm/jokerdance"
+                        },
+                        {
+                            "e": "text",
+                            "t": " Personal Win "
+                        },
+                        {
+                            "a": ":jokerdancemirror:",
+                            "e": "emoji",
+                            "u": "https://emoji.redditmedia.com/88tfe4mqun751_t5_2uqcm/jokerdancemirror"
+                        }
+                    ],
+                    "subreddit_name_prefixed": "r/MadeMeSmile",
+                    "hidden": false,
+                    "pwls": 6,
+                    "link_flair_css_class": "",
+                    "downs": 0,
+                    "thumbnail_height": 140,
+                    "top_awarded_type": null,
+                    "hide_score": false,
+                    "name": "t3_10csw70",
+                    "quarantine": false,
+                    "link_flair_text_color": "dark",
+                    "upvote_ratio": 0.95,
+                    "author_flair_background_color": null,
+                    "ups": 3,
+                    "total_awards_received": 3,
+                    "media_embed": {},
+                    "thumbnail_width": 140,
+                    "author_flair_template_id": null,
+                    "is_original_content": false,
+                    "user_reports": [],
+                    "secure_media": null,
+                    "is_reddit_media_domain": false,
+                    "is_meta": false,
+                    "category": null,
+                    "secure_media_embed": {},
+                    "link_flair_text": ":jokerdance: Personal Win :jokerdancemirror:",
+                    "can_mod_post": false,
+                    "score": 16165,
+                    "approved_by": null,
+                    "is_created_from_ads_ui": false,
+                    "author_premium": true,
+                    "thumbnail": "https://b.thumbs.redditmedia.com/ZQyOczmLbU-JB6pJ3FJMmQtAqRB4oMz_L2MbJPQpC6A.jpg",
+                    "edited": false,
+                    "author_flair_css_class": null,
+                    "author_flair_richtext": [],
+                    "gildings": {},
+                    "content_categories": null,
+                    "is_self": false,
+                    "subreddit_type": "public",
+                    "created": 1673811922,
+                    "link_flair_type": "richtext",
+                    "wls": 6,
+                    "removed_by_category": null,
+                    "banned_by": null,
+                    "author_flair_type": "text",
+                    "domain": "i.imgur.com",
+                    "allow_live_comments": true,
+                    "selftext_html": null,
+                    "likes": null,
+                    "suggested_sort": null,
+                    "banned_at_utc": null,
+                    "url_overridden_by_dest": "https://i.imgur.com/jT2qxoB.jpg",
+                    "view_count": null,
+                    "archived": false,
+                    "no_follow": false,
+                    "is_crosspostable": false,
+                    "pinned": false,
+                    "over_18": false,
+                    "preview": {
+                        "images": [
+                            {
+                                "source": {
+                                    "url": "https://dummyimage.com/600x400/000/fff&text=Dummy+Image",
+                                    "width": 1936,
+                                    "height": 1936
+                                },
+                                "resolutions": [
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=6b14e0ca2f514fd206f981aa982ff4f8f1e140af",
+                                        "width": 108,
+                                        "height": 108
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=297ff019378b352a26a33cf9907a226011c1b35a",
+                                        "width": 216,
+                                        "height": 216
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=5479ae8598162ea41ebbf7d65f54f56bad8781cb",
+                                        "width": 320,
+                                        "height": 320
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=3aac16ee61d7075244d7df8eee29c67a385b34c4",
+                                        "width": 640,
+                                        "height": 640
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=a0c5eaa0e6147429dc85a1f22e4793920bda8759",
+                                        "width": 960,
+                                        "height": 960
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=4880cd5f51df789feb14d1f7c6fe5722cde4a148",
+                                        "width": 1080,
+                                        "height": 1080
+                                    }
+                                ],
+                                "variants": {},
+                                "id": "5NIcsbk1pO2F-gb0lAdeMG-zk72zrzDxgz2NS-D0rPI"
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    "all_awardings": [],
+                    "awarders": [],
+                    "media_only": false,
+                    "link_flair_template_id": "24179b60-b96e-11ea-8b62-0e4e0b1c1787",
+                    "can_gild": false,
+                    "spoiler": false,
+                    "locked": false,
+                    "author_flair_text": null,
+                    "treatment_tags": [],
+                    "visited": false,
+                    "removed_by": null,
+                    "mod_note": null,
+                    "distinguished": null,
+                    "subreddit_id": "t5_2uqcm",
+                    "author_is_blocked": false,
+                    "mod_reason_by": null,
+                    "num_reports": null,
+                    "removal_reason": null,
+                    "link_flair_background_color": "#9be6dd",
+                    "id": "10csw703",
+                    "is_robot_indexable": true,
+                    "report_reasons": null,
+                    "author": "StarksTwins",
+                    "discussion_type": null,
+                    "num_comments": 352,
+                    "send_replies": true,
+                    "whitelist_status": "all_ads",
+                    "contest_mode": false,
+                    "mod_reports": [],
+                    "author_patreon_flair": false,
+                    "author_flair_text_color": null,
+                    "permalink": "/r/MadeMeSmile/comments/10csw70/oc_had_my_facial_reconstruction_surgery_2_months/",
+                    "parent_whitelist_status": "all_ads",
+                    "stickied": false,
+                    "url": "https://dummyimage.com/600x400/000/fff&text=Dummy+Image",
+                    "subreddit_subscribers": 7078856,
+                    "created_utc": 1673811922,
+                    "num_crossposts": 0,
+                    "media": null,
+                    "is_video": false
+                }
+            },
+            {
+                "kind": "t3",
+                "data": {
+                    "approved_at_utc": null,
+                    "subreddit": "MadeMeSmile",
+                    "selftext": "",
+                    "author_fullname": "t2_1yl6spp4",
+                    "saved": false,
+                    "mod_reason_title": null,
+                    "gilded": 0,
+                    "clicked": false,
+                    "title": "[OC] Had my facial reconstruction surgery 2 months ago. Was called Megamind, Ken Griffey Jr, Jimmy Nuetron, etc etc. 8 weeks later and feeling a lot more confident in how I look 😊",
+                    "link_flair_richtext": [
+                        {
+                            "a": ":jokerdance:",
+                            "e": "emoji",
+                            "u": "https://emoji.redditmedia.com/fgm153y7vn751_t5_2uqcm/jokerdance"
+                        },
+                        {
+                            "e": "text",
+                            "t": " Personal Win "
+                        },
+                        {
+                            "a": ":jokerdancemirror:",
+                            "e": "emoji",
+                            "u": "https://emoji.redditmedia.com/88tfe4mqun751_t5_2uqcm/jokerdancemirror"
+                        }
+                    ],
+                    "subreddit_name_prefixed": "r/MadeMeSmile",
+                    "hidden": false,
+                    "pwls": 6,
+                    "link_flair_css_class": "",
+                    "downs": 0,
+                    "thumbnail_height": 140,
+                    "top_awarded_type": null,
+                    "hide_score": false,
+                    "name": "t3_10csw70",
+                    "quarantine": false,
+                    "link_flair_text_color": "dark",
+                    "upvote_ratio": 0.95,
+                    "author_flair_background_color": null,
+                    "ups": 4,
+                    "total_awards_received": 3,
+                    "media_embed": {},
+                    "thumbnail_width": 140,
+                    "author_flair_template_id": null,
+                    "is_original_content": false,
+                    "user_reports": [],
+                    "is_reddit_media_domain": false,
+                    "is_meta": false,
+                    "category": null,
+                    "secure_media_embed": {},
+                    "link_flair_text": ":jokerdance: Personal Win :jokerdancemirror:",
+                    "can_mod_post": false,
+                    "score": 16165,
+                    "approved_by": null,
+                    "is_created_from_ads_ui": false,
+                    "author_premium": true,
+                    "thumbnail": "https://b.thumbs.redditmedia.com/ZQyOczmLbU-JB6pJ3FJMmQtAqRB4oMz_L2MbJPQpC6A.jpg",
+                    "edited": false,
+                    "author_flair_css_class": null,
+                    "author_flair_richtext": [],
+                    "gildings": {},
+                    "content_categories": null,
+                    "is_self": false,
+                    "subreddit_type": "public",
+                    "created": 1673811922,
+                    "link_flair_type": "richtext",
+                    "wls": 6,
+                    "removed_by_category": null,
+                    "banned_by": null,
+                    "author_flair_type": "text",
+                    "domain": "i.imgur.com",
+                    "allow_live_comments": true,
+                    "selftext_html": null,
+                    "likes": null,
+                    "suggested_sort": null,
+                    "banned_at_utc": null,
+                    "url_overridden_by_dest": "https://i.imgur.com/jT2qxoB.jpg",
+                    "view_count": null,
+                    "archived": false,
+                    "no_follow": false,
+                    "is_crosspostable": false,
+                    "pinned": false,
+                    "over_18": false,
+                    "preview": {
+                        "images": [
+                            {
+                                "source": {
+                                    "url": "https://dummyimage.com/600x400/000/fff&text=Dummy+Image",
+                                    "width": 1936,
+                                    "height": 1936
+                                },
+                                "resolutions": [
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=108&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=6b14e0ca2f514fd206f981aa982ff4f8f1e140af",
+                                        "width": 108,
+                                        "height": 108
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=216&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=297ff019378b352a26a33cf9907a226011c1b35a",
+                                        "width": 216,
+                                        "height": 216
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=320&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=5479ae8598162ea41ebbf7d65f54f56bad8781cb",
+                                        "width": 320,
+                                        "height": 320
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=3aac16ee61d7075244d7df8eee29c67a385b34c4",
+                                        "width": 640,
+                                        "height": 640
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=960&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=a0c5eaa0e6147429dc85a1f22e4793920bda8759",
+                                        "width": 960,
+                                        "height": 960
+                                    },
+                                    {
+                                        "url": "https://external-preview.redd.it/RmjRNE92y15cyMAxA0wS2WD-o_2hGMuunsmTigG24qM.jpg?width=1080&amp;crop=smart&amp;auto=webp&amp;v=enabled&amp;s=4880cd5f51df789feb14d1f7c6fe5722cde4a148",
+                                        "width": 1080,
+                                        "height": 1080
+                                    }
+                                ],
+                                "variants": {},
+                                "id": "5NIcsbk1pO2F-gb0lAdeMG-zk72zrzDxgz2NS-D0rPI"
+                            }
+                        ],
+                        "enabled": true
+                    },
+                    "all_awardings": [],
+                    "awarders": [],
+                    "media_only": false,
+                    "link_flair_template_id": "24179b60-b96e-11ea-8b62-0e4e0b1c1787",
+                    "can_gild": false,
+                    "spoiler": false,
+                    "locked": false,
+                    "author_flair_text": null,
+                    "treatment_tags": [],
+                    "visited": false,
+                    "removed_by": null,
+                    "mod_note": null,
+                    "distinguished": null,
+                    "subreddit_id": "t5_2uqcm",
+                    "author_is_blocked": false,
+                    "mod_reason_by": null,
+                    "num_reports": null,
+                    "removal_reason": null,
+                    "link_flair_background_color": "#9be6dd",
+                    "id": "10csw704",
+                    "is_robot_indexable": true,
+                    "report_reasons": null,
+                    "author": "StarksTwins",
+                    "discussion_type": null,
+                    "num_comments": 352,
+                    "send_replies": true,
+                    "whitelist_status": "all_ads",
+                    "contest_mode": false,
+                    "mod_reports": [],
+                    "author_patreon_flair": false,
+                    "author_flair_text_color": null,
+                    "permalink": "/r/MadeMeSmile/comments/10csw70/oc_had_my_facial_reconstruction_surgery_2_months/",
+                    "parent_whitelist_status": "all_ads",
+                    "stickied": false,
+                    "url": "https://dummyimage.com/600x400/000/fff&text=Dummy+Image",
+                    "subreddit_subscribers": 7078856,
+                    "created_utc": 1673811922,
+                    "num_crossposts": 0,
+                    "media": null,
+                    "is_video": true,
+                    "secure_media" : {
+                        "reddit_video": {
+                            "fallback_url": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                        }
+                    }
+                }
             }
+
+
+
         ]
     }
 }

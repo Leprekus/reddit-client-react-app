@@ -6,15 +6,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchComments, fetchPosts, postVote, selectAlertProps, selectDisplayAlert, showAlert } from "../features/post/postSlice"
 import { selectCurrentToken, selectCurrentUser } from "../features/auth/authSlice"
 import { Link } from "react-router-dom"
+import calculate from "../utils/calculate"
 
 export const Post = ({ data }) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
   const [expanded, setExpanded] = useState(false)
   const [viewPostButton, setViewPostButton]  = useState('show more')
+
   const [upvoteColor, setUpvoteColor] = useState('')
   const [downvoteColor, setDownvoteColor] = useState('')
   const [currentVote, setCurrentVote] = useState(0)
+  const [votes, setVotes] = useState(calculate(data.ups))
+
   const currentToken = useSelector(selectCurrentToken)
   const awardContainerRef = useRef(null)
   useMemo(() => {
@@ -44,26 +48,26 @@ export const Post = ({ data }) => {
       return value > 0 ? 
       (setUpvoteColor('primary'),
       setDownvoteColor(''),
-      dispatch(postVote([data.name, value])))
+      dispatch(postVote([data.name, value])),
+      setVotes(prevState => calculate(prevState+=value)))
       : 
       (setDownvoteColor('primary'),
       setUpvoteColor(''),
-      dispatch(postVote([data.name, value]))
-      )
+      dispatch(postVote([data.name, value])),
+      setVotes(prevState => calculate(prevState+=value)))
+      
     }
     //resets vote
     if(currentVote !== 0) {
       setCurrentVote(0)
       setUpvoteColor('')
       setDownvoteColor('')
-      console.log(currentVote)
       return dispatch(postVote([data.name, 0]))
        
     }
     //dispatches normal vote (when currentVote === 0)
     value > 0 ? setUpvoteColor('primary') : setDownvoteColor('primary')    
     setCurrentVote(value)
-    console.log(currentVote)
     return dispatch(postVote([data.name, value]))
     
   }
@@ -152,6 +156,7 @@ export const Post = ({ data }) => {
         <CardActions>
           <IconButton color={upvoteColor} onClick={() => handleVote(1)} aria-label="upvote"><ArrowUpward/></IconButton>
           <IconButton color={downvoteColor} onClick={() => handleVote(-1)} aria-label="downvote"><ArrowDownward/></IconButton>
+          <Tooltip arrow title='Upvotes' placement='top'><Button>{ votes }</Button></Tooltip>
           <IconButton sx={{ borderRadius: '5px'}} aria-label="display-comments-button" onClick={handleDisplayComments}><InsertComment/></IconButton>
           {data.selftext?.length > 0 && 
           <Button

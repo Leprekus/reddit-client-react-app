@@ -43,11 +43,14 @@ export const RedditPostsList = ({ list }) => {
             }
         }
     const selectMostLikedPosts = (e) => {
-        dispatch(fetchPosts(`search.json?q=video`))
+        const ups = listKeys.map(key => list[key].postData.ups)
+        //spread operator creates shallow copy to trigger rerender, otherwise component does not update
+        const mostLikedPosts = [...listKeys].sort((a, b) => ups[listKeys.indexOf(a)] > ups[listKeys.indexOf(b)] ? -1 : 1);
+        return mostLikedPosts
     }
     const selectLinkPosts = (e) => {
         const linkPosts = listKeys
-        .filter(key => list[key].postData.name.split('_')[0] === 't3')
+        .filter(key => list[key].postData.post_hint === 'link')
         return linkPosts
 
     } 
@@ -59,9 +62,12 @@ export const RedditPostsList = ({ list }) => {
 
     }
     const selectFlairedPosts = (e) => {
-
+        
     }
     const selectVideoPosts = (e) => {
+        const videoPosts = listKeys
+        .filter(key => list[key].postData.is_video)
+        return videoPosts
 
     }
     const selectImagePosts = (e) => {
