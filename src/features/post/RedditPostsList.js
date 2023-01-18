@@ -1,5 +1,5 @@
 import { Post } from "../../components/Post";
-import { Unstable_Grid2 as Grid2 } from "@mui/material";
+import { Button, Unstable_Grid2 as Grid2 } from "@mui/material";
 import { CommentSection } from  '../../components/CommentSection'
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -43,11 +43,14 @@ export const RedditPostsList = ({ list }) => {
             }
         }
     const selectMostLikedPosts = (e) => {
-        dispatch(fetchPosts(`search.json?q=video`))
+        const ups = listKeys.map(key => list[key].postData.ups)
+        //spread operator creates shallow copy to trigger rerender, otherwise component does not update
+        const mostLikedPosts = [...listKeys].sort((a, b) => ups[listKeys.indexOf(a)] > ups[listKeys.indexOf(b)] ? -1 : 1);
+        return mostLikedPosts
     }
     const selectLinkPosts = (e) => {
         const linkPosts = listKeys
-        .filter(key => list[key].postData.name.split('_')[0] === 't3')
+        .filter(key => list[key].postData.post_hint === 'link')
         return linkPosts
 
     } 
@@ -59,9 +62,12 @@ export const RedditPostsList = ({ list }) => {
 
     }
     const selectFlairedPosts = (e) => {
-
+        
     }
     const selectVideoPosts = (e) => {
+        const videoPosts = listKeys
+        .filter(key => list[key].postData.is_video)
+        return videoPosts
 
     }
     const selectImagePosts = (e) => {
@@ -105,6 +111,9 @@ export const RedditPostsList = ({ list }) => {
                 <span test-label-id='images-filter' onClick={(e) => handleApplyFilter(e, selectImagePosts)} className="hover" style={filterStyle('#6e5a7d')}>images</span>
                 <span test-label-id='text-filter' onClick={(e) => handleApplyFilter(e, selectTextPosts)} className="hover" style={filterStyle('#053c4b')}>text</span>
             </Grid2>
+                {listKeys.length < 1 && 
+                <Button variant="primary" onClick={dispatch(fetchPosts('.json?sort=new'))}>Refresh</Button>
+                }
                 {
                 //iterate each key to get post object
                 listKeys.map((id, index) => {

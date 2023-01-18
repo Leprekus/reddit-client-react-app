@@ -1,17 +1,23 @@
-import { Button, IconButton, Input, InputAdornment, TextField } from "@mui/material"
+import { Alert, Button, Fade, IconButton, Input, InputAdornment, TextField } from "@mui/material"
 import { useMemo, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, Outlet } from "react-router-dom"
 import { logout, selectCurrentToken, fetchClientToken, selectCurrentUser, setRandomString } from "../features/auth/authSlice"
 import { Unstable_Grid2 as Grid2 } from "@mui/material";
 import { Search } from "@mui/icons-material"
-import { fetchPosts } from "../features/post/postSlice"
+import { fetchPosts, selectAlertProps, selectDisplayAlert } from "../features/post/postSlice"
 import randomstring from "randomstring"
 import { useLogin } from "../hooks/useLogin"
+
 export const Root = () => {
     const dispatch = useDispatch()
     const currentToken = useSelector(selectCurrentToken)
     const currentUser = useSelector(selectCurrentUser)
+    const displayAlert = useSelector(selectDisplayAlert)
+    const alertProps = useSelector(selectAlertProps)
+    const { type, text } = alertProps
+  
+
     const [searchField, setSearchField] = useState('')
     const [login, setLogin] = useState(() => {
         return currentUser ? 'Logout' : 'Login'
@@ -62,6 +68,11 @@ export const Root = () => {
              <Outlet/>:
              <h1>Loading...</h1>
         }
+        <Fade in={displayAlert}>
+            <Alert severity={type} sx={{ position: 'fixed', top: 0, right: '50%', transform: 'translate(50%, 50%)'}}>{ text }</Alert>
+        </Fade>
+       
+
        
     </main>
    ) 
