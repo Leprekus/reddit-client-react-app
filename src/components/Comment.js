@@ -13,7 +13,7 @@ export const Comment = ({ data }) => {
     const dispatch = useDispatch()
     const currentUser = useSelector(selectCurrentUser)
     const handleVote = (value) => {
-        if(!currentUser) return dispatch(showAlert(['info', 'you must be signed in to perform this action']))
+        if(!currentUser) return dispatch(showAlert(['info', 'sign in to perform this action']))
         //changes downvote to upvote & viceversa
         if(value + currentVote === 0) {
           setCurrentVote(value)

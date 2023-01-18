@@ -41,7 +41,7 @@ export const Post = ({ data }) => {
     return awardContainerRef.current.style.display = 'flex'
   }
   const handleVote = (value) => {
-    if(!currentUser) return dispatch(showAlert(['info', 'you must be signed in to perform this action']))
+    if(!currentUser) return dispatch(showAlert(['info', 'sign in to perform this action']))
     //changes downvote to upvote & viceversa
     if(value + currentVote === 0) {
       setCurrentVote(value)
@@ -156,7 +156,7 @@ export const Post = ({ data }) => {
         <CardActions>
           <IconButton color={upvoteColor} onClick={() => handleVote(1)} aria-label="upvote"><ArrowUpward/></IconButton>
           <IconButton color={downvoteColor} onClick={() => handleVote(-1)} aria-label="downvote"><ArrowDownward/></IconButton>
-          <Tooltip arrow title='Upvotes' placement='top'><Button>{ votes }</Button></Tooltip>
+          <Tooltip arrow title='Upvotes' placement='top'><Button aria-label='votes'>{ votes }</Button></Tooltip>
           <IconButton sx={{ borderRadius: '5px'}} aria-label="display-comments-button" onClick={handleDisplayComments}><InsertComment/></IconButton>
           {data.selftext?.length > 0 && 
           <Button
